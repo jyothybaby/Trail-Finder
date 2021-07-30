@@ -22,4 +22,14 @@ Our application helps endures of the outdoors to search for hiking trails within
         6. CSS
         7.javascript
         
+       
+       
+## Landing Page: 
+          ![Homepage wireframe](https://user-images.githubusercontent.com/73779089/127587482-380abe15-ddf9-411f-a62c-d8a3ae78786f.PNG)
+            
+## Finding trail page:
+![Secondpage wireframe](https://user-images.githubusercontent.com/73779089/127587517-13260176-d56e-4fdb-b4cf-c00b778b3e3c.PNG)
+
+
+        
 
