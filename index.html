@@ -1,46 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Compiled and minified CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Trails!</title>
-  </head>
-  <body>
-    <nav>
-      <div class="nav-wrapper navbar-fixed">
-        <a href="#" class="brand-logo">Trail Finder</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">Search</a></li>
-        </ul>
-      </div>
-    </nav>
-    <div class="container" id="welcome">
-      <br /><br />
-      <h1 class="header center orange-text">Find you next trail!</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">Explore trails with detailed maps.</h5>
-      </div>
-      <div class="row center">
-        <input type="text" placeholder="" />
-        <a
-          href="#"
-          id="download-button"
-          class="btn-large waves-effect waves-light orange"
-          >Search</a
-        >
-      </div>
-      <br /><br />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <!--Import Google Icon Font-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <title>Trails!</title>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper ">
+      <a href="#" class="brand-logo"><i class="material-icons"></i>Trail Finder</a>
+      <ul id="nav-mobile" class="right .hide-on-small-only">
+        <li>
+          <div class="center row">
+            <div class="col s12 ">
+              <div class="row" id="topbarsearch">
+                <div class="input-field col s6 s12 red-text">
+                  <i class="red-text material-icons prefix">search</i>
+                  <input id="navCity" type="text" placeholder="Find Trails, cities etc..">
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <!-- Called the function "searchTrail(event,'city')" from the button"-->
+        <li><a class="waves-effect waves-light btn" onclick="searchTrail(event, 'navCity')">Search</a></li>
+        <!-- <li><a href="#" class="search" target="_blank">Find</a> </li> -->
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
     </div>
-    <footer class="page-footer">
+  </nav>
+  <section id="homePage">
+    <section id=formSection>
+      <div class="container" id="welcome">
+        <br /><br />
+        <h1 class="header center orange-text">Find you next trail!</h1>
+        <div class="row center">
+          <h5 class="header col s12 light" id="ExploreWithMap">Explore trails with detailed maps.</h5>
+        </div>
+
+        <div class="row center">
+          <form class="formContainer">
+            <input type="text" id="city" name="search" placeholder=" Search...." required>
+            <div id="formMsg"></div>
+          </form>
+          <!-- <a href="#" id="download-button" class="btn-large waves-effect waves-light orange">Search</a> -->
+          <!-- Called the function "searchTrail(event,'city')" from the button"-->
+          <button type="button" class="mainbutton" onclick="searchTrail(event,'city')">SEARCH</button><br>
+        </div>
+    </section>
+    <br /><br />
+    </div>
+    <section class="contactUs">
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
@@ -60,13 +83,62 @@
           </div>
         </div>
       </div>
-      <div class="footer-copyright">
-        <div class="container">
-          © 2021 Trail Finder
-          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+    </section>
+  </section>
+
+  <!-- Page2 -->
+  <!-- main secction -->
+  <section id="page-2">
+    <!-- Miles for Easy search -->
+
+    <section id="milesButtonAndSearchCity">
+      <!-- Leftside Contents -->
+      <section id="leftsidepage2ButtonsAndLocalStorage">
+        <div id="buttonsfor5-10-15">
+          <h6><b>Miles for Easy search</b></h6> <br>
+          <button type="button" class="button button1">5 Miles!</button><br>
+          <button type="button" class="button button2">10 Miles!</button><br>
+          <button type="button" class="button button3">15 miles!</button><br>
         </div>
+        <!-- Recent searches -->
+        <div id=recentSearches>
+          <div>
+            <h6> <b>Your recent Searches</b></h6><br>
+            <div id="recentSearchesCity"> </div>
+            <!-- local storage will come here -->
+          </div>
+          <div>
+            <button type="button" class="clear-city" onclick="clearCities()">CLEAR CITY</button><br>
+          </div>
+        </div>
+      </section>
+      <!-- Left side contents till here................ -->
+      <!-- Right side contents like weather map and map for the current locatio will go here -->
+      <section id="apiWeatherAndMap">
+        <div id="weathersection">
+          <div id="WeatherParameters"></div>
+
+        </div>
+
+      </section>
+    </section>
+
+
+  </section>
+  <footer>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2021 Trail Finder
+        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
       </div>
-    </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  </body>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://kit.fontawesome.com/3c309b0cab.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+  <script src="assets/js/script.js"></script>
+</body>
+
 </html>
