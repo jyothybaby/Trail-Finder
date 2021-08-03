@@ -3,7 +3,7 @@
 }
 
 .brand-logo {
-  margin-left: 30px;
+ /* margin-left: 30px; */
 }
 
 body {
@@ -11,7 +11,141 @@ body {
   background-size: 100%;
 }
 
-.page-footer {
+.contactUs {
   background-image: linear-gradient(#95b54c, #607123);
   margin-top: 11%;
+}
+#topbarsearch .input-field .prefix { 
+  width:0rem !important;    
+  }        
+#topbarsearch nav ul li:hover, nav ul li.active {
+      background-color: none !important;
+  }
+  .input-field .prefix ~ input, .input-field .prefix ~ textarea, .input-field .prefix ~ label, .input-field .prefix ~ .validate ~ label, .input-field .prefix ~ .autocomplete-content{
+    margin-left: 1rem !important;
+    }
+    .mainbutton {
+      text-align: center;
+      background-color:  orange ;
+      padding:20px;
+    }
+   
+   #ExploreWithMap{
+     font-weight: Bold;
+     color: white;
+   }
+   
+  .formContainer {
+   right: 0;
+    margin: 20px;
+    padding: 16px;
+    background-color: white; 
+  }
+  input[type=text] {
+    
+    width: 100%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+ background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+}
+
+
+
+.button {
+  border: none;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: rgb(238, 238, 175);
+  border: 2px solid #4CAF50;
+}
+.button1:hover {
+  background-color: yellow ;
+}
+
+.button2{
+  background-color: rgb(98, 98, 230);
+  border: 2px solid #4CAF50;
+}
+.button2:hover {
+  background-color: blue ;
+}
+
+.button3 {
+  background-color: rgb(238, 109, 109);
+  border: 2px solid #4CAF50;
+}
+.button3:hover {
+  background-color: red ;
+}
+
+footer{
+  background-color: orangered;
+}
+
+#milesButtonAndSearchCity {
+  background-color: gray;
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: row; */
+ }
+
+.error  {
+  font-weight: bold;
+  color: red;
+}
+#buttonsfor5-10-15 {
+  display: flex;
+  flex-wrap: wrap;
+  margin:20px;
+  padding-top: 20px;
+  padding-left:10px;
+  background-color: rgb(187, 172, 172);
+  flex-direction: column;
+ 
+}
+
+
+/* #buttonsfor5-10-15 button {
+  margin-left:20px;
+} */
+
+#recentSearches {
+  display: flex;
+  flex-wrap: wrap;
+  margin:20px;
+  padding-top: 20px;
+  padding-left:10px;
+  background-color: rgb(143, 127, 127);
+}
+
+#leftsidepage2ButtonsAndLocalStorage {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.clear-city {
+  padding:10px;
+  background-color: rgb(145, 240, 145);
+}
+#apiWeatherAndMap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+#WeatherParameters {
+  font-weight: bold;
+  
 }
