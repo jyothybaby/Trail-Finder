@@ -1,3 +1,9 @@
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+  });
+
+
 //OpenWeather Onecall API Key : d74649d085e772a2cff36556b7a6a792
 var butnSearchEl = document.querySelector(".mainbutton");
 WeatherParametersEl= document.querySelector("#WeatherParameters");
