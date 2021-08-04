@@ -37,7 +37,8 @@
         <!-- Called the function "searchTrail(event,'city')" from the button"-->
         <li><a class="waves-effect waves-light btn" onclick="searchTrail(event, 'navCity')">Search</a></li>
         <!-- <li><a href="#" class="search" target="_blank">Find</a> </li> -->
-        <li><a href="#">About Us</a></li>
+        <!-- Modal Trigger -->
+        <li><a class="waves-effect waves-light btn modal-trigger" href="#modalAboutUs">About Us</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
     </div>
@@ -141,4 +142,16 @@
   <script src="assets/js/script.js"></script>
 </body>
 
+  <!-- Modal Structure -->
+  <div id="modalAboutUs" class="modal" style="z-index: 1003; display: none; opacity: 0; top: 4%; transform: scaleX(0.8) scaleY(0.8);>
+    <div class="modal-content">
+      <h4>About Us</h4>
+      <p>Thank you for checking out our Trail Finder App. If you would like to learn more about this project please</p>
+      <a href=""></a>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+          
 </html>
