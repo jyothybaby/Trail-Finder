@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Sidenav.init(elems);
   });
 
-
+ //Map box Access token: pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw
 //OpenWeather Onecall API Key : d74649d085e772a2cff36556b7a6a792
 var butnSearchEl = document.querySelector(".mainbutton");
 WeatherParametersEl= document.querySelector("#WeatherParameters");
@@ -84,7 +84,13 @@ function getWeatherInfo(cityEl) {
         var temp = Math.round((((data.main.temp) - 273.15) * 1.8) + 32);
         console.log("Temp", temp);
         WeatherParametersEl.textContent = "Today's Weather - "+ day+": "+ "Temperature: "+ temp+ " "+ "F" + ", " + "Humidity: " + data.main.humidity + " " + "%"+ ", " + "Wind: "+  data.wind.speed + " " + "MPH";
-      
+        var lat = data.coord.lat;
+        console.log(lat)
+        var lon = data.coord.lon;
+        console.log(lon);
+        //ATTENTION: First parameter will be LONGITUDE then Latitude
+        setUpMap([lon,lat]);
+
     })
 }
 var formMsg = document.querySelector("#formMsg");
@@ -94,6 +100,29 @@ function displayMessage(type, message) {
     formMsg.textContent = message;
     formMsg.setAttribute("class", type);
 }
+
+mapboxgl.accessToken = "pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw";
+
+// navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {enableHighAccuracy: true});
+
+// function successLocation(position) {
+//     console.log("from MAPBOX", position)
+//     setUpMap([position.coords.longitude, position.coords.latitude]);
+// }
+
+// function errorLocation() {
+
+// }
+
+function setUpMap(center){
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: center,
+        zoom:12
+       });
+}
+
 
 initilizeProgram();
 
