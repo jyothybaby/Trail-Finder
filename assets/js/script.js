@@ -6,13 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
  //Map box Access token: pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw
 //OpenWeather Onecall API Key : d74649d085e772a2cff36556b7a6a792
 var butnSearchEl = document.querySelector(".mainbutton");
-WeatherParametersEl= document.querySelector("#WeatherParameters");
+WeatherParametersEl = document.querySelector("#WeatherParameters");
 var redirectUrl = '404.html';
+var mapUrl = 'page2.html';
 var citiesArray = [];
 var listContainerEl = document.getElementById("listContainer")
 
 function initilizeProgram() {
-    document.getElementById("page-2").style.setProperty("display", "none"); 
  // Local storage Actovitie starts from here...............   
     //initialize cities from local storage
     var citiesLocal = JSON.parse(localStorage.getItem("citiesLocal"));
@@ -62,8 +62,10 @@ function searchTrail(event, cityId){
         localStorage.setItem("citiesLocal", JSON.stringify(citiesArray));
         //going to call a function for displaying the local storage data
         viewCities();
-        document.getElementById("homePage").style.setProperty("display", "none");
-        document.getElementById("page-2").style.setProperty("display", "block");
+
+        butnSearchEl.addEventListener('click', function(){
+            document.location.replace(mapUrl);
+        })
         getWeatherInfo(cityEl);
     }
     
