@@ -5,6 +5,11 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Mapbox link -->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
@@ -19,9 +24,9 @@
 
 <body>
 
-  <div class = "navbar-fixed">
+  <div class="navbar-fixed">
     <nav>
-      <div class="nav-wrapper" id = "navigation">
+      <div class="nav-wrapper" id="navigation">
         <a href="#!" class="brand-logo">Trail Finder</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
@@ -48,7 +53,7 @@
     <li><a href="#">Contact Us</a></li>
     <li><a class="waves-effect waves-light btn modal-trigger" href="#modalAboutUs">About Us</a></li>
   </ul>
- 
+
   <section id="homePage">
     <section id=formSection>
       <div class="container" id="welcome">
@@ -98,6 +103,7 @@
   <section id="page-2">
     <!-- Miles for Easy search -->
 
+
     <section id="milesButtonAndSearchCity">
       <!-- Leftside Contents -->
       <section id="leftsidepage2ButtonsAndLocalStorage">
@@ -124,13 +130,15 @@
       <section id="apiWeatherAndMap">
         <div id="weathersection">
           <div id="WeatherParameters"></div>
-
         </div>
-
-      </section>
+        <!-- Dynamically creating the Trails List. -->
+        <div>
+          <h4>List of Trails:</h4>
+          <div id = "listContainer" class ="list=group" ></div>
+        </div>
     </section>
-
-
+    </section>
+    <div id='map'></div>
   </section>
  <!-- Modal Structure -->
  <div id="modalAboutUs" class="modal bottom-sheet">

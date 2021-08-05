@@ -3,12 +3,13 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Sidenav.init(elems);
   });
 
-
+ //Map box Access token: pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw
 //OpenWeather Onecall API Key : d74649d085e772a2cff36556b7a6a792
 var butnSearchEl = document.querySelector(".mainbutton");
 WeatherParametersEl= document.querySelector("#WeatherParameters");
 var redirectUrl = '404.html';
 var citiesArray = [];
+var listContainerEl = document.getElementById("listContainer")
 
 function initilizeProgram() {
     document.getElementById("page-2").style.setProperty("display", "none"); 
@@ -84,7 +85,15 @@ function getWeatherInfo(cityEl) {
         var temp = Math.round((((data.main.temp) - 273.15) * 1.8) + 32);
         console.log("Temp", temp);
         WeatherParametersEl.textContent = "Today's Weather - "+ day+": "+ "Temperature: "+ temp+ " "+ "F" + ", " + "Humidity: " + data.main.humidity + " " + "%"+ ", " + "Wind: "+  data.wind.speed + " " + "MPH";
-      
+        var lat = data.coord.lat;
+        console.log(lat)
+        var lon = data.coord.lon;
+        console.log(lon);
+        //ATTENTION: First parameter will be LONGITUDE then Latitude
+        setUpMap([lon,lat]);
+        //showMarker(lon,lat);
+        listTrailfinder(lon,lat);
+
     })
 }
 var formMsg = document.querySelector("#formMsg");
@@ -93,6 +102,55 @@ var formMsg = document.querySelector("#formMsg");
 function displayMessage(type, message) {
     formMsg.textContent = message;
     formMsg.setAttribute("class", type);
+}
+
+mapboxgl.accessToken = "pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw";
+
+// navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {enableHighAccuracy: true});
+
+// function successLocation(position) {
+//     console.log("from MAPBOX", position)
+//     setUpMap([position.coords.longitude, position.coords.latitude]);
+// }
+
+// function errorLocation() {
+
+// }
+
+var map;
+function setUpMap(center){
+    map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: center,
+        zoom:8
+    
+       });
+}
+
+function listTrailfinder(lon,lat) {
+    var mapListURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/trail.json?proximity=" + lon + "," + lat +"&access_token=pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw&limit=10";
+
+
+    fetch(mapListURL)
+    .then(function (response){
+        return response.json();
+    })
+    .then(function (data){
+        console.log("trails list: ", data);
+        console.log("data length :", data.features.length);
+        for (var i=0; i<data.features.length; i++) {
+            var card = document.createElement("div");
+            card.textContent = data.features[i].place_name;
+            listContainerEl.appendChild(card);
+
+            const marker2 = new mapboxgl.Marker({ color: 'blue' })
+                .setLngLat(data.features[i].geometry.coordinates)
+                .addTo(map);
+        }
+
+    
+    });
 }
 
 
