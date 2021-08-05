@@ -9,6 +9,7 @@ var butnSearchEl = document.querySelector(".mainbutton");
 WeatherParametersEl= document.querySelector("#WeatherParameters");
 var redirectUrl = '404.html';
 var citiesArray = [];
+var listContainerEl = document.getElementById("listContainer")
 
 function initilizeProgram() {
     document.getElementById("page-2").style.setProperty("display", "none"); 
@@ -90,6 +91,8 @@ function getWeatherInfo(cityEl) {
         console.log(lon);
         //ATTENTION: First parameter will be LONGITUDE then Latitude
         setUpMap([lon,lat]);
+        //showMarker(lon,lat);
+        listTrailfinder(lon,lat);
 
     })
 }
@@ -114,13 +117,40 @@ mapboxgl.accessToken = "pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqY
 
 // }
 
+var map;
 function setUpMap(center){
-    var map = new mapboxgl.Map({
+    map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: center,
-        zoom:12
+        zoom:8
+    
        });
+}
+
+function listTrailfinder(lon,lat) {
+    var mapListURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/trail.json?proximity=" + lon + "," + lat +"&access_token=pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw&limit=10";
+
+
+    fetch(mapListURL)
+    .then(function (response){
+        return response.json();
+    })
+    .then(function (data){
+        console.log("trails list: ", data);
+        console.log("data length :", data.features.length);
+        for (var i=0; i<data.features.length; i++) {
+            var card = document.createElement("div");
+            card.textContent = data.features[i].place_name;
+            listContainerEl.appendChild(card);
+
+            const marker2 = new mapboxgl.Marker({ color: 'blue' })
+                .setLngLat(data.features[i].geometry.coordinates)
+                .addTo(map);
+        }
+
+    
+    });
 }
 
 
