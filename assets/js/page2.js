@@ -71,7 +71,7 @@ function initilizeProgram() {
      
  
  
- //second script file:
+ 
  function getWeatherInfo(cityEl) {
      var apiurl = "https://api.openweathermap.org/data/2.5/weather?q= " + cityEl + "&appid=d74649d085e772a2cff36556b7a6a792"; 
      fetch(apiurl)
