@@ -117,8 +117,14 @@ function initilizeProgram() {
          return response.json();
      })
      .then(function (data){
+
+         console.log("trails list: ", data);
+         console.log("data length :", data.features.length);
+         listContainerEl.innerHTML = "";
+
         //  console.log("trails list: ", data);
         //  console.log("data length :", data.features.length);
+
          for (var i=0; i<data.features.length; i++) {
              var card = document.createElement("div");
              card.textContent = data.features[i].place_name;
