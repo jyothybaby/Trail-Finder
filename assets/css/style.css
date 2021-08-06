@@ -67,9 +67,25 @@ nav{
   top: 40%;
 }
 
-#right-div h4 span{
+#right-div h4 .span{
   color: var(--green);
   font-weight: bold;
+}
+
+#right-div .typewriter h4 .hike{
+  border-right: 8px solid var(--green);
+  animation: blink-caret .9s step-end infinite;
+  padding-right: 8px;
+}
+
+@keyframes blink-caret{
+  from,
+  to {
+      border-color: transparent
+  }
+  50% {
+      border-color: var(--green)
+  }
 }
 
 .mainbutton {
