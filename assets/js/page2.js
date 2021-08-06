@@ -84,7 +84,7 @@ function initilizeProgram() {
      .then (function (data){
          var day = moment().format("M/D/YYYY");  //Used Moment.js for dispalying the date
          var temp = Math.round((((data.main.temp) - 273.15) * 1.8) + 32);
-         WeatherParametersEl.textContent = "Today's Weather - "+day+": Temperature: "+temp+" °F, Humidity: "+data.main.humidity+" % , Wind: "+data.wind.speed+" MPH";
+         WeatherParametersEl.textContent = "Today's Weather - "+day+": Temperature: "+temp+"°F, Humidity: "+data.main.humidity+" % , Wind: "+data.wind.speed+" MPH";
          var lat = data.coord.lat;
          var lon = data.coord.lon;
          //ATTENTION: First parameter will be LONGITUDE then Latitude
