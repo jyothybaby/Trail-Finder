@@ -1,20 +1,21 @@
+//Map box Access token: pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw
+//OpenWeather Onecall API Key : d74649d085e772a2cff36556b7a6a792
+var listContainerEl = document.getElementById("listContainer")
+var butnSearchEl = document.querySelector(".mainbutton");
+var WeatherParametersEl = document.querySelector("#WeatherParameters");
+var redirectUrl = '404.html';
+var mapUrl = 'page2.html';
+var citiesArray = [];
+
+
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
     var instances = M.Sidenav.init(elems);
   });
-
- //Map box Access token: pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw
-//OpenWeather Onecall API Key : d74649d085e772a2cff36556b7a6a792
-var butnSearchEl = document.querySelector(".mainbutton");
-WeatherParametersEl = document.querySelector("#WeatherParameters");
-var redirectUrl = '404.html';
-var mapUrl = 'page2.html';
-var citiesArray = [];
-var listContainerEl = document.getElementById("listContainer")
-
-function initilizeProgram() {
- // Local storage Actovitie starts from here...............   
-    //initialize cities from local storage
+/**
+ * Local storage retrevial
+ */
+function initilizeProgram() { 
     var citiesLocal = JSON.parse(localStorage.getItem("citiesLocal"));
     if (citiesLocal !== null) {
         citiesArray = citiesLocal;
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Modal.init(elems);
 });
 
+//On page load start
 initilizeProgram();
 
 
