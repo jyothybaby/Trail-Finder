@@ -32,15 +32,15 @@ function initilizeProgram() {
          var cityButton = document.createElement("li");
          cityButton.textContent = city;
          cityButtonList.appendChild(cityButton);
-         
+        // console.log(citiesArray);
      }
  }
  
  //Clearing the local storage
  function clearCities() {
-    cityButtonList.innerHTML = "";
      localStorage.removeItem("citiesLocal");
      citiesArray = [];
+     cityButtonList.innerHTML = "";
  }
  // local storage process till here.............
  function searchTrail(event, cityId){
