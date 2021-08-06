@@ -58,15 +58,16 @@ function searchTrail(event, cityId){
         displayMessage("error", "Please enter a City !!");
         return;
     } else {
-        citiesArray.push(cityEl);
-        localStorage.setItem("citiesLocal", JSON.stringify(citiesArray));
-        //going to call a function for displaying the local storage data
-        viewCities();
-        document.getElementById("homePage").style.setProperty("display", "none");
-        document.getElementById("page-2").style.setProperty("display", "block");
-        getWeatherInfo(cityEl);
+        if(citiesArray.includes(cityEl)=== false){
+            citiesArray.push(cityEl);
+            localStorage.setItem("citiesLocal", JSON.stringify(citiesArray));
+        }
+            //going to call a function for displaying the local storage data
+            viewCities();
+            document.getElementById("homePage").style.setProperty("display", "none");
+            document.getElementById("page-2").style.setProperty("display", "block");
+            getWeatherInfo(cityEl);
     }
-    
 }
 
 function getWeatherInfo(cityEl) {
