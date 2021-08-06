@@ -20,7 +20,7 @@
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link rel="stylesheet" href="./assets/css/style.css" />
-  <title>Trails!</title>
+  <title>Trail Finder</title>
 </head>
 
 <body>
@@ -36,15 +36,16 @@
               <div class="col s12 ">
                 <div class="row" id="topbarsearch">
                   <div class="input-field col s6 s12 red-text">
-                    <i class="red-text material-icons prefix">search</i>
+                    <i class="material-icons prefix"></i>
                     <input id="navCity" type="text" placeholder="Find Trails, cities etc..">
                   </div>
                 </div>
               </div>
             </div>
           </li>
-          <li><a class="waves-effect waves-light btn" onclick="searchTrail(event, 'navCity')">Search</a></li>
-          <li><a class="waves-effect waves-light btn modal-trigger" href="#modalAboutUs">About Us</a></li>
+          <li><a class=" btn nav-search" onclick="searchTrail(event, 'navCity')">Search</a></li>
+          <li><a class=" btn modal-trigger" href="#modalAboutUs">About Us</a></li>
+          <li><a class= "btn contact-btn" href="#">Contact</a></li>
         </ul>
       </div>
     </nav>
@@ -55,29 +56,9 @@
     <li><a class="waves-effect waves-light btn modal-trigger" href="#modalAboutUs">About Us</a></li>
   </ul>
 
-  <section id="homePage">
-    <section id=formSection>
-      <div class="container" id="welcome">
-        <br /><br />
-        <h1 class="header center orange-text">Find you next trail!</h1>
-        <div class="row center">
-          <h5 class="header col s12 light" id="ExploreWithMap">Explore trails with detailed maps.</h5>
-        </div>
-
-        <div class="row center">
-          
-            <div id="formMsg"></div>
-          </form>
-          <!-- <a href="#" id="download-button" class="btn-large waves-effect waves-light orange">Search</a> -->
-          <!-- Called the function "searchTrail(event,'city')" from the button"-->
-          <button type="button" class="mainbutton" onclick="switchPages(event)">SEARCH</button><br>
-        </div>
-    </section>
-    <br /><br />
-    </div>
+  
     
-  <!-- Page2 -->
-  <!-- main secction -->
+ 
   
  <!-- Modal Structure -->
  <div id="modalAboutUs" class="modal bottom-sheet">
@@ -109,3 +90,8 @@
 </body>
 
 </html>
+
+
+<!-- Called the function "searchTrail(event,'city')" from the button"-->
+<!--<button type="button" class="mainbutton" onclick="switchPages(event)">SEARCH</button><br>-->
+<!--<div id="formMsg"></div> --> 
