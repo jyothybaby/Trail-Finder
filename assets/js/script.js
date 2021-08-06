@@ -21,7 +21,6 @@ function initilizeProgram() {
     }
 }
 
-
 function switchPages() {
     document.location.replace(mapUrl);
 }
