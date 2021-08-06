@@ -1,3 +1,9 @@
+//Navbar mobile functionality
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(elems);
+});
+
 var butnSearchEl = document.querySelector(".mainbutton");
 WeatherParametersEl = document.querySelector("#WeatherParameters");
 var redirectUrl = '404.html';
@@ -9,6 +15,7 @@ function initilizeProgram() {
   // Local storage Actovitie starts from here...............   
      //initialize cities from local storage
      var citiesLocal = JSON.parse(localStorage.getItem("citiesLocal"));
+     //debugger
      if (citiesLocal !== null) {
          citiesArray = citiesLocal;
      }
@@ -51,16 +58,18 @@ function initilizeProgram() {
          displayMessage("error", "Please enter a City !!");
          return;
      } else {
-         citiesArray.push(cityEl);
-         localStorage.setItem("citiesLocal", JSON.stringify(citiesArray));
-         //going to call a function for displaying the local storage data
-         viewCities();
- 
- 
-         getWeatherInfo(cityEl);
+      if(citiesArray.includes(cityEl)=== false){
+        citiesArray.push(cityEl);
+        localStorage.setItem("citiesLocal", JSON.stringify(citiesArray));
+    }
+        //going to call a function for displaying the local storage data
+        viewCities();
+       
+        getWeatherInfo(cityEl);
+}
      }
      
- }
+ 
  
  //second script file:
  function getWeatherInfo(cityEl) {
@@ -170,6 +179,7 @@ function initilizeProgram() {
  });
  
  initilizeProgram();
+ viewCities();
  
  
  
