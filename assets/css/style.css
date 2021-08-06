@@ -9,6 +9,7 @@
 body {
   background-image: url("/assets/images/ccc-subhead.jpg");
   background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .contactUs {
