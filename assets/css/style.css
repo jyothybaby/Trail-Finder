@@ -1,32 +1,50 @@
 :root{
---orange : #E88565;
+--green : #717E63;
 --black : #181A27;
 --white : #FFEFE5;
 }
 
+nav{
+  box-shadow: none !important;
+}
+
 .nav-wrapper {
-  background-color: var(--orange);
+  background-color: var(--green);
+  box-shadow: none !important;
 }
 
 .brand-logo {
   margin-left: 30px; 
 }
 
+.nav-search, .modal-trigger, .contact-btn {
+  background-color: var(--white);
+  color: var(--black);
+  border-radius: 5px;
+  box-shadow: none;
+  transition: 0.5s;
+}
+
+.nav-search:hover, .modal-trigger:hover, .contact-btn:hover{
+  background-color: var(--green);
+  color: var(--white);
+  box-shadow: 5px;
+}
+
+
 
 #topbarsearch .input-field .prefix {
   width:0rem !important;
   }
+  
 #topbarsearch nav ul li:hover, nav ul li.active {
-      background-color: none !important;
+      background-color: green !important;
   }
+
   .input-field .prefix ~ input, .input-field .prefix ~ textarea, .input-field .prefix ~ label, .input-field .prefix ~ .validate ~ label, .input-field .prefix ~ .autocomplete-content{
     margin-left: 1rem !important;
     }
-    .mainbutton {
-      text-align: center;
-      background-color:  orange ;
-      padding:20px;
-    }
+   
 
    #ExploreWithMap{
      font-weight: Bold;
