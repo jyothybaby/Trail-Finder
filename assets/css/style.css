@@ -4,6 +4,10 @@
 --white : #FFEFE5;
 }
 
+body {
+  background-color: var(--white);
+}
+
 nav{
   box-shadow: none !important;
 }
@@ -31,13 +35,20 @@ nav{
   box-shadow: 5px;
 }
 
-#container {
+
+#left-div {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 50%;
   left: 0;
   bottom: 0;
-  background-color: var(--white);
+  width: 50%;
+}
+
+#left-div img {
+  width:100%;
+  height:100%;
+  object-fit: cover;
 }
 
 #right-div {
@@ -50,8 +61,10 @@ nav{
 }
 
 #right-div h4{
+  position: absolute;
   color: var(--black);
   font-size: 45px;
+  top: 40%;
 }
 
 #right-div h4 span{
@@ -59,23 +72,28 @@ nav{
   font-weight: bold;
 }
 
+.mainbutton {
+   position: relative;
+   top: 57%;
+   width: 150px;
+   height: 50px;
+   background-color: var(--green);
+   color: var(--white);
+   border-radius: 5px;
+   box-shadow: none;
+   transition: 0.5s;
+   font-weight: bold;
+ }
 
-#left-div {
-  position: absolute;
-  top: 0;
-  right: 50%;
-  left: 0;
-  bottom: 0; 
-  width: 100%;
-  height: 100%;
-}
+ .mainbutton:hover{
+  background-color: var(--white);
+  color: var(--black);
+  box-shadow: 2px;
+ }
 
-#left-div img{
-  width: 50%;
-  height: 100%;
-  border-radius: 30px;
-  object-fit: cover;
-}
+
+
+
 
 #topbarsearch .input-field .prefix {
   width:0rem !important;
