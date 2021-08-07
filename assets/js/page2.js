@@ -59,6 +59,7 @@ function initilizeProgram() {
          displayMessage("error", "Please enter a City !!");
          return;
      } else {
+        cityEl = capitalizeFirstLetter(cityEl);
         //prevents duplicate cities
         if(citiesArray.includes(cityEl)=== false){
             citiesArray.push(cityEl);
@@ -82,10 +83,24 @@ function initilizeProgram() {
          }
      })
      .then (function (data){
-         var day = moment().format("M/D/YYYY");  //Used Moment.js for dispalying the date
+         var day = moment().format("ddd MMM Do");  //Used Moment.js for dispalying the date
          var temp = Math.round((((data.main.temp) - 273.15) * 1.8) + 32);
-         debugger
-         WeatherParametersEl.textContent = "Today's Weather - "+day+": Temperature: "+temp+"°F, Humidity: "+data.main.humidity+" % , Wind: "+data.wind.speed+" MPH";
+         //This will clear out any previously created elements
+         while(WeatherParametersEl.firstChild){
+             WeatherParametersEl.removeChild(WeatherParametersEl.firstChild);
+         }
+         var liElOne = document.createElement("li");
+         liElOne.textContent = cityEl+" Weather this "+day+":";
+         WeatherParametersEl.appendChild(liElOne);
+         var liElTwo = document.createElement("li");
+         liElTwo.textContent = "Temperature: "+temp+"°F";
+         WeatherParametersEl.appendChild(liElTwo);
+         var liElThree = document.createElement("li");
+         liElThree.textContent = "Humidity: "+data.main.humidity+" %";
+         WeatherParametersEl.appendChild(liElThree);
+         var liElFour = document.createElement("li");
+         liElFour.textContent = "Wind: "+data.wind.speed+" MPH";
+         WeatherParametersEl.appendChild(liElFour);
          var lat = data.coord.lat;
          var lon = data.coord.lon;
          //ATTENTION: First parameter will be LONGITUDE then Latitude
@@ -153,6 +168,22 @@ function initilizeProgram() {
      var instances = M.Modal.init(elems);
  });
  
+/**
+ * From stackoverflow.com capitalize in general for english
+ * @param {*} string 
+ * @returns Upper case first letter on every word space
+ */
+ function capitalizeFirstLetter(string) {
+    var splitStr = string.toLowerCase().split(' ');
+    for (var i = 0; i < splitStr.length; i++) {
+        // You do not need to check if i is larger than splitStr length, as your for does that for you
+        // Assign it back to the array
+        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+    }
+    // Directly return the joined string
+    return splitStr.join(' '); 
+  }
+
  initilizeProgram();
  viewCities();
  
