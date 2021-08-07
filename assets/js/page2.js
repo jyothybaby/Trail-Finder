@@ -84,6 +84,7 @@ function initilizeProgram() {
      .then (function (data){
          var day = moment().format("M/D/YYYY");  //Used Moment.js for dispalying the date
          var temp = Math.round((((data.main.temp) - 273.15) * 1.8) + 32);
+         debugger
          WeatherParametersEl.textContent = "Today's Weather - "+day+": Temperature: "+temp+"°F, Humidity: "+data.main.humidity+" % , Wind: "+data.wind.speed+" MPH";
          var lat = data.coord.lat;
          var lon = data.coord.lon;
@@ -117,14 +118,9 @@ function initilizeProgram() {
          return response.json();
      })
      .then(function (data){
-
          console.log("trails list: ", data);
          console.log("data length :", data.features.length);
          listContainerEl.innerHTML = "";
-
-        //  console.log("trails list: ", data);
-        //  console.log("data length :", data.features.length);
-
          for (var i=0; i<data.features.length; i++) {
              var card = document.createElement("div");
              card.textContent = data.features[i].place_name;
