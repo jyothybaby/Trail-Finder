@@ -116,7 +116,7 @@ function listTrailfinder(lon, lat) {
     listContainerEl.innerHTML = "";
     imageContainerEl.innerHTML = "";
 
-    var mapListURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/trail.json?proximity=" + lon + "," + lat + "&access_token=pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw&limit=5";
+    var mapListURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/trail.json?proximity=" + lon + "," + lat + "&access_token=pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw&limit=2";
     var searchTrailResult;
     fetch(mapListURL)
         .then(function (response) {
