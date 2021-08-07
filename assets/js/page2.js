@@ -45,12 +45,7 @@ function displayCities() {
      }
  }
  
- //Clearing the local storage
- function clearCities() {
-     localStorage.removeItem("citiesLocal");
-     citiesArray = [];
-     cityButtonList.innerHTML = "";
- }
+ 
 
  // local storage process till here.............
  function searchTrail(event, cityId){
@@ -62,14 +57,16 @@ function displayCities() {
          return;
      } else {
         cityEl = capitalizeFirstLetter(cityEl);
-
-    for (var i = 0; i < citiesArray.length; i++) {
-        var city = citiesArray[i];
-        var cityButton = document.createElement("li");
-        cityButton.textContent = city;
-        cityButtonList.appendChild(cityButton);
+    //prevents duplicate cities
+    if (citiesArray.includes(cityEl) === false) {
+        citiesArray.push(cityEl);
+        localStorage.setItem("citiesLocal", JSON.stringify(citiesArray));
     }
+    //going to call a function for displaying the local storage data
+    viewCities();
+    getWeatherInfo(cityEl);
 }
+ }
 
 //Clearing the local storage
 function clearCities() {
@@ -78,26 +75,7 @@ function clearCities() {
     cityButtonList.innerHTML = "";
 }
 
-// local storage process till here.............
-function searchTrail(event, cityId) {
-    event.preventDefault();
 
-    var cityEl = document.getElementById(cityId).value;
-    if (cityEl === "") {
-        displayMessage("error", "Please enter a City !!");
-        return;
-    } else {
-
-        //prevents duplicate cities
-        if (citiesArray.includes(cityEl) === false) {
-            citiesArray.push(cityEl);
-            localStorage.setItem("citiesLocal", JSON.stringify(citiesArray));
-        }
-        //going to call a function for displaying the local storage data
-        viewCities();
-        getWeatherInfo(cityEl);
-    }
-}
      
 
  function getWeatherInfo(cityEl) {
@@ -226,28 +204,7 @@ function searchTrail(event, cityId) {
 
 
 
-function getWeatherInfo(cityEl) {
-    var apiurl = "https://api.openweathermap.org/data/2.5/weather?q= " + cityEl + "&appid=d74649d085e772a2cff36556b7a6a792";
-    fetch(apiurl)
-        .then(function (response) {
-            if (response.status === 404) {
-                document.location.replace(redirectUrl);
-            } else {
-                return response.json();
-            }
-        })
-        .then(function (data) {
-            var day = moment().format("M/D/YYYY");  //Used Moment.js for dispalying the date
-            var temp = Math.round((((data.main.temp) - 273.15) * 1.8) + 32);
-            WeatherParametersEl.textContent = "Today's Weather - " + day + ": Temperature: " + temp + "°F, Humidity: " + data.main.humidity + " % , Wind: " + data.wind.speed + " MPH";
-            var lat = data.coord.lat;
-            var lon = data.coord.lon;
-            //ATTENTION: First parameter will be LONGITUDE then Latitude
-            setUpMap([lon, lat]);
-            //showMarker(lon,lat);
-            listTrailfinder(lon, lat);
-        })
-}
+
 
 // creating a function for Form messages
 function displayMessage(type, message) {
@@ -361,8 +318,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var instances = M.Modal.init(elems);
 });
 
-initilizeProgram();
-viewCities();
+
 
 
 
