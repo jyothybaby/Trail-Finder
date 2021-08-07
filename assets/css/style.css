@@ -40,35 +40,35 @@ nav {
 }
 
 /* label color */
-.input-field label {
+#modal1 .input-field label {
   color: #000;
 }
 /* label focus color */
-.input-field input[type="text"]:focus + label {
+#modal1 .input-field input[type="text"]:focus + label {
   color: #000;
 }
 /* label underline focus color */
-.input-field input[type="text"]:focus {
+#modal1 .input-field input[type="text"]:focus {
   border-bottom: 1px solid #000;
   box-shadow: 0 1px 0 0 #000;
 }
 /* valid color */
-.input-field input[type="text"].valid {
+#modal1 .input-field input[type="text"].valid {
   border-bottom: 1px solid #000;
   box-shadow: 0 1px 0 0 #000;
 }
 /* invalid color */
-.input-field input[type="text"].invalid {
+#modal1 .input-field input[type="text"].invalid {
   border-bottom: 1px solid #000;
   box-shadow: 0 1px 0 0 #000;
 }
 /* icon prefix focus color */
-.input-field .prefix.active {
+#modal1 .input-field .prefix.active {
   color: #717e63;
   position: relative;
 }
 
-.input-field .prefix {
+#modal1 .input-field .prefix {
   color: #717e6325;
 }
 
