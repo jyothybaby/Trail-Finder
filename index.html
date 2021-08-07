@@ -11,6 +11,7 @@
   <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+  <link rel="shortcut icon" type="image/png" href="assets/images/tree.png"/>
   <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
   <!-- Compiled and minified CSS -->
@@ -19,7 +20,7 @@
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link rel="stylesheet" href="./assets/css/style.css" />
-  <title>Trails!</title>
+  <title>Trail Finder</title>
 </head>
 
 <body>
@@ -35,15 +36,16 @@
               <div class="col s12 ">
                 <div class="row" id="topbarsearch">
                   <div class="input-field col s6 s12 red-text">
-                    <i class="red-text material-icons prefix">search</i>
+                    <i class="material-icons prefix"></i>
                     <input id="navCity" type="text" placeholder="Find Trails, cities etc..">
                   </div>
                 </div>
               </div>
             </div>
           </li>
-          <li><a class="waves-effect waves-light btn" onclick="searchTrail(event, 'navCity')">Search</a></li>
-          <li><a class="waves-effect waves-light btn modal-trigger" href="#modalAboutUs">About Us</a></li>
+          <li><a class=" btn nav-search" onclick="searchTrail(event, 'navCity')">Search</a></li>
+          <li><a class=" btn modal-trigger" href="#modalAboutUs">About Us</a></li>
+          <li><a class= "btn contact-btn" href="#">Contact</a></li>
         </ul>
       </div>
     </nav>
@@ -54,29 +56,31 @@
     <li><a class="waves-effect waves-light btn modal-trigger" href="#modalAboutUs">About Us</a></li>
   </ul>
 
-  <section id="homePage">
-    <section id=formSection>
-      <div class="container" id="welcome">
-        <br /><br />
-        <h1 class="header center orange-text">Find you next trail!</h1>
-        <div class="row center">
-          <h5 class="header col s12 light" id="ExploreWithMap">Explore trails with detailed maps.</h5>
-        </div>
+ 
+  
+  
 
-        <div class="row center">
-          
-            <div id="formMsg"></div>
-          </form>
-          <!-- <a href="#" id="download-button" class="btn-large waves-effect waves-light orange">Search</a> -->
-          <!-- Called the function "searchTrail(event,'city')" from the button"-->
-          <button type="button" class="mainbutton" onclick="switchPages(event)">SEARCH</button><br>
-        </div>
-    </section>
-    <br /><br />
+   
+
+    <div id="right-div">
+      <div class="typewriter">
+        <h4 class = "center-align"> <span class = span>Trail Finder</span> helps endures of the <span class="span">outdoors</span> to find the <span class="span">perfect</span> <span class="hike"> hike</span> </h4>
+      </div>
+      <button type="button" class="mainbutton btn" onclick="switchPages(event)"> Find a Trail! </button>
+    </div>
+      
+   
+    <div id="left-div">
+      <img src="../assets/images/nature.jpg" class="responsive-img">
     </div>
     
-  <!-- Page2 -->
-  <!-- main secction -->
+    
+  
+
+
+  
+    
+ 
   
  <!-- Modal Structure -->
  <div id="modalAboutUs" class="modal bottom-sheet">
@@ -108,3 +112,8 @@
 </body>
 
 </html>
+
+
+<!-- Called the function "searchTrail(event,'city')" from the button"-->
+
+<!--<div id="formMsg"></div> --> 
