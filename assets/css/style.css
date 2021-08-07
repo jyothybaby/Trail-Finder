@@ -236,17 +236,43 @@ footer{
 }
 #apiWeatherAndMap {
   display: flex;
+  flex: 1;
   flex-wrap: wrap;
-  flex-direction: column;
 }
 #WeatherParameters {
   font-weight: bold;
 
 }
 #map{
-  position: absolute; 
-  /* top: 0; */
-  /* bottom: 0;  */
-   width: 100%;
-  height:300px; 
-  }
+  position: relative; 
+  width: 100%;
+  height:100%; 
+}
+
+.card-main {
+  display: flex;
+  margin-top: 2%;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1 0 200px;
+  padding: 10px;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.card header {
+  padding: 20px;
+  background: #13293d;
+  color: #fff;
+}
+
+.card img {
+  overflow-x: scroll;
+  width: 100%;
+  /* The client insists that images be at least 400px */
+  min-width: 400px;
+  
+}
