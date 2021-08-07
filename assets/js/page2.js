@@ -36,7 +36,6 @@ function viewCities() {
 
 function displayCities() {
     cityButtonList.innerHTML = "";
-<<<<<<< HEAD
      for (var i = 0; i < citiesArray.length; i++) {
          var city = citiesArray[i];
          var cityButton = document.createElement("li");
@@ -62,192 +61,53 @@ function displayCities() {
          return;
      } else {
         cityEl = capitalizeFirstLetter(cityEl);
-=======
-    for (var i = 0; i < citiesArray.length; i++) {
-        var city = citiesArray[i];
-        var cityButton = document.createElement("li");
-        cityButton.textContent = city;
-        cityButtonList.appendChild(cityButton);
-    }
-}
-
-//Clearing the local storage
-function clearCities() {
-    localStorage.removeItem("citiesLocal");
-    citiesArray = [];
-    cityButtonList.innerHTML = "";
-}
-
-// local storage process till here.............
-function searchTrail(event, cityId) {
-    event.preventDefault();
-
-    var cityEl = document.getElementById(cityId).value;
-    if (cityEl === "") {
-        displayMessage("error", "Please enter a City !!");
-        return;
-    } else {
->>>>>>> 14832b18b9c384db527553f2cb03c553a2573a59
-        //prevents duplicate cities
-        if (citiesArray.includes(cityEl) === false) {
-            citiesArray.push(cityEl);
-            localStorage.setItem("citiesLocal", JSON.stringify(citiesArray));
+               //prevents duplicate cities
+               if(citiesArray.includes(cityEl)=== false){
+                citiesArray.push(cityEl);
+                localStorage.setItem("citiesLocal", JSON.stringify(citiesArray));
+            }
+            //going to call a function for displaying the local storage data
+            viewCities();
+            getWeatherInfo(cityEl);
         }
-        //going to call a function for displaying the local storage data
-        viewCities();
-        getWeatherInfo(cityEl);
-    }
 }
-<<<<<<< HEAD
-     
-
- function getWeatherInfo(cityEl) {
-     var apiurl = "https://api.openweathermap.org/data/2.5/weather?q= "+cityEl+"&appid=d74649d085e772a2cff36556b7a6a792"; 
-     fetch(apiurl)
-     .then(function(response){
-         if (response.status === 404) {
-             document.location.replace(redirectUrl); 
-         } else {
-             return response.json();
-         }
-     })
-     .then (function (data){
-         var day = moment().format("ddd MMM Do");  //Used Moment.js for dispalying the date
-         var temp = Math.round((((data.main.temp) - 273.15) * 1.8) + 32);
-         //This will clear out any previously created elements
-         while(WeatherParametersEl.firstChild){
-             WeatherParametersEl.removeChild(WeatherParametersEl.firstChild);
-         }
-         var liElOne = document.createElement("li");
-         liElOne.textContent = cityEl+" Weather this "+day+":";
-         WeatherParametersEl.appendChild(liElOne);
-         var liElTwo = document.createElement("li");
-         liElTwo.textContent = "Temperature: "+temp+"°F";
-         WeatherParametersEl.appendChild(liElTwo);
-         var liElThree = document.createElement("li");
-         liElThree.textContent = "Humidity: "+data.main.humidity+" %";
-         WeatherParametersEl.appendChild(liElThree);
-         var liElFour = document.createElement("li");
-         liElFour.textContent = "Wind: "+data.wind.speed+" MPH";
-         WeatherParametersEl.appendChild(liElFour);
-         var lat = data.coord.lat;
-         var lon = data.coord.lon;
-         //ATTENTION: First parameter will be LONGITUDE then Latitude
-         setUpMap([lon,lat]);
-         //showMarker(lon,lat);
-         listTrailfinder(lon,lat);
-    })
- }
- 
- // creating a function for Form messages
- function displayMessage(type, message) {
-     formMsg.textContent = message;
-     formMsg.setAttribute("class", type);
- }
- 
-
- function setUpMap(center){
-     map = new mapboxgl.Map({
-         container: 'map',
-         style: 'mapbox://styles/mapbox/streets-v11',
-         center: center,
-         zoom:8
-    });
- }
- 
- function listTrailfinder(lon,lat) {
-     var mapListURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/trail.json?proximity="+lon+","+lat+"&access_token=pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw&limit=10";
-     fetch(mapListURL)
-     .then(function (response){
-         return response.json();
-     })
-     .then(function (data){
-         console.log("trails list: ", data);
-         console.log("data length :", data.features.length);
-         listContainerEl.innerHTML = "";
-         for (var i=0; i<data.features.length; i++) {
-             var card = document.createElement("div");
-             card.textContent = data.features[i].place_name;
-             listContainerEl.appendChild(card);
-             const marker2 = new mapboxgl.Marker({ color: 'blue' })
-                 .setLngLat(data.features[i].geometry.coordinates)
-                 .addTo(map);
-         }
-     });
- }
- 
- /**
-  * This initializes the modal window to open when triggered
-  *
- * Options for the modal
- * @member Modal#options
- * @prop {Number} [opacity=0.5] - Opacity of the modal overlay
- * @prop {Number} [inDuration=250] - Length in ms of enter transition
- * @prop {Number} [outDuration=250] - Length in ms of exit transition
- * @prop {Function} onOpenStart - Callback function called before modal is opened
- * @prop {Function} onOpenEnd - Callback function called after modal is opened
- * @prop {Function} onCloseStart - Callback function called before modal is closed
- * @prop {Function} onCloseEnd - Callback function called after modal is closed
- * @prop {Boolean} [dismissible=true] - Allow modal to be dismissed by keyboard or overlay click
- * @prop {String} [startingTop='4%'] - startingTop
- * @prop {String} [endingTop='10%'] - endingTop
- */
- document.addEventListener('DOMContentLoaded', function() {
-     var elems = document.querySelectorAll('.modal');
-     var instances = M.Modal.init(elems);
- });
- 
-/**
- * From stackoverflow.com capitalize in general for english
- * @param {*} string 
- * @returns Upper case first letter on every word space
- */
- function capitalizeFirstLetter(string) {
-    var splitStr = string.toLowerCase().split(' ');
-    for (var i = 0; i < splitStr.length; i++) {
-        // You do not need to check if i is larger than splitStr length, as your for does that for you
-        // Assign it back to the array
-        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
-    }
-    // Directly return the joined string
-    return splitStr.join(' '); 
-  }
-
- initilizeProgram();
- viewCities();
- 
- 
- 
- 
- 
- 
- 
- 
- 
-=======
-
 
 function getWeatherInfo(cityEl) {
-    var apiurl = "https://api.openweathermap.org/data/2.5/weather?q= " + cityEl + "&appid=d74649d085e772a2cff36556b7a6a792";
+    var apiurl = "https://api.openweathermap.org/data/2.5/weather?q= "+cityEl+"&appid=d74649d085e772a2cff36556b7a6a792"; 
     fetch(apiurl)
-        .then(function (response) {
-            if (response.status === 404) {
-                document.location.replace(redirectUrl);
-            } else {
-                return response.json();
-            }
-        })
-        .then(function (data) {
-            var day = moment().format("M/D/YYYY");  //Used Moment.js for dispalying the date
-            var temp = Math.round((((data.main.temp) - 273.15) * 1.8) + 32);
-            WeatherParametersEl.textContent = "Today's Weather - " + day + ": Temperature: " + temp + "°F, Humidity: " + data.main.humidity + " % , Wind: " + data.wind.speed + " MPH";
-            var lat = data.coord.lat;
-            var lon = data.coord.lon;
-            //ATTENTION: First parameter will be LONGITUDE then Latitude
-            setUpMap([lon, lat]);
-            //showMarker(lon,lat);
-            listTrailfinder(lon, lat);
-        })
+    .then(function(response){
+        if (response.status === 404) {
+            document.location.replace(redirectUrl); 
+        } else {
+            return response.json();
+        }
+    })
+    .then (function (data){
+        var day = moment().format("ddd MMM Do");  //Used Moment.js for dispalying the date
+        var temp = Math.round((((data.main.temp) - 273.15) * 1.8) + 32);
+        //This will clear out any previously created elements
+        while(WeatherParametersEl.firstChild){
+            WeatherParametersEl.removeChild(WeatherParametersEl.firstChild);
+        }
+        var liElOne = document.createElement("li");
+        liElOne.textContent = cityEl+" Weather this "+day+":";
+        WeatherParametersEl.appendChild(liElOne);
+        var liElTwo = document.createElement("li");
+        liElTwo.textContent = "Temperature: "+temp+"°F";
+        WeatherParametersEl.appendChild(liElTwo);
+        var liElThree = document.createElement("li");
+        liElThree.textContent = "Humidity: "+data.main.humidity+" %";
+        WeatherParametersEl.appendChild(liElThree);
+        var liElFour = document.createElement("li");
+        liElFour.textContent = "Wind: "+data.wind.speed+" MPH";
+        WeatherParametersEl.appendChild(liElFour);
+        var lat = data.coord.lat;
+        var lon = data.coord.lon;
+        //ATTENTION: First parameter will be LONGITUDE then Latitude
+        setUpMap([lon,lat]);
+        //showMarker(lon,lat);
+        listTrailfinder(lon,lat);
+   })
 }
 
 // creating a function for Form messages
@@ -373,5 +233,4 @@ viewCities();
 
 
 
->>>>>>> 14832b18b9c384db527553f2cb03c553a2573a59
 
