@@ -9,7 +9,7 @@ var formMsg = document.querySelector("#formMsg");
 var redirectUrl = '404.html';
 var mapUrl = 'page2.html';
 var citiesArray = []; //object array for pulling out of local storage elements
-var map; //object that has to be inialized by function setUpMap
+const map; //object that has to be inialized by function setUpMap
 
 //Navbar mobile functionality
 document.addEventListener('DOMContentLoaded', function () {
@@ -126,22 +126,21 @@ function clearCities() {
          center: center,
          zoom:15
     });
-
-    map.on('load', () => {
-        map.addSource('dem', {
-            'type': 'raster-dem',
-             'url': 'mapbox://mapbox-terrain-dem-v1'
-        });
-        map.addLayer(
-            {
-                'id': 'hillshading',
-                'source': 'dem',
-                'type': 'hillshade'
-            },
-        );
-    });
  }
  
+ map.on('load', () => {
+    map.addSource('dem', {
+        'type': 'raster-dem',
+         'url': 'mapbox://mapbox-terrain-dem-v1'
+    });
+    map.addLayer(
+        {
+            'id': 'hillshading',
+            'source': 'dem',
+            'type': 'hillshade'
+        },
+    );
+});
 
  /**
   * This initializes the modal window to open when triggered
