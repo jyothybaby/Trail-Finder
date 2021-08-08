@@ -1,4 +1,4 @@
-mapboxgl.accessToken = "pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw";
+mapboxgl.accessToken = "pk.eyJ1IjoiYWRhbS1uaWdnZWJydWdnZSIsImEiOiJja3JzMXN1M2EwaHJoMzF1aHRsNnh3ejNiIn0.qgb2dKPkqB5Lx5iukcDSdA";
 
 var butnSearchEl = document.querySelector(".mainbutton");
 var WeatherParametersEl = document.querySelector("#WeatherParameters");
@@ -122,9 +122,23 @@ function clearCities() {
  function setUpMap(center){
      map = new mapboxgl.Map({
          container: 'map',
-         style: 'mapbox://styles/mapbox/streets-v11',
+         style: 'mapbox://styles/adam-niggebrugge/cks2lfvnt3ymv17pkmhxwlh83',
          center: center,
-         zoom:8
+         zoom:15
+    });
+
+    map.on('load', () => {
+        map.addSource('dem', {
+            'type': 'raster-dem',
+             'url': 'mapbox://mapbox-terrain-dem-v1'
+        });
+        map.addLayer(
+            {
+                'id': 'hillshading',
+                'source': 'dem',
+                'type': 'hillshade'
+            },
+        );
     });
  }
  
@@ -166,31 +180,12 @@ function clearCities() {
     return splitStr.join(' '); 
   }
 
- initilizeProgram();
- viewCities();
-
-// creating a function for Form messages
-function displayMessage(type, message) {
-    formMsg.textContent = message;
-    formMsg.setAttribute("class", type);
-}
-
-
-function setUpMap(center) {
-    map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: center,
-        zoom: 8
-    });
-}
-
 function listTrailfinder(lon, lat) {
     //Clear earlier results
     listContainerEl.innerHTML = "";
     imageContainerEl.innerHTML = "";
 
-    var mapListURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/trail.json?proximity=" + lon + "," + lat + "&access_token=pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw&limit=2";
+    var mapListURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/trail.json?proximity="+lon+","+lat+"&access_token=pk.eyJ1IjoiYWRhbS1uaWdnZWJydWdnZSIsImEiOiJja3JzMXN1M2EwaHJoMzF1aHRsNnh3ejNiIn0.qgb2dKPkqB5Lx5iukcDSdA&limit=4";
     var searchTrailResult;
     fetch(mapListURL)
         .then(function (response) {
@@ -227,7 +222,7 @@ function listTrailImages(searchTrailResult){
         //Fetch the image of each trail result by calling Serpapi
         var imgSearchText = searchTrailResult.features[i].place_name;
         console.log(imgSearchText);
-        var imageSearchUrl = "https://serpapi.com/search.json?q=" + imgSearchText + "&tbm=isch&ijn=0&api_key=d6db6046a49d044c851ae398fe7e90ecf61ede5961a226a8129f43fb2de747c3";
+        var imageSearchUrl = "https://serpapi.com/search.json?q="+imgSearchText+"&tbm=isch&ijn=0&api_key=d6db6046a49d044c851ae398fe7e90ecf61ede5961a226a8129f43fb2de747c3";
         fetch(imageSearchUrl)
             .then(function (response) {
                 return response.json();
@@ -256,11 +251,11 @@ function listTrailImages(searchTrailResult){
     // from origin 'http://localhost:5500' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. 
     // If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
     // Added chrome extension Allow CORS for time being. We need to find a permanent solution for this.
-
     }
 }
 
-
+initilizeProgram();
+viewCities();
 
 
 
