@@ -22,6 +22,7 @@ function initilizeProgram() {
     if (citiesLocal !== null) {
         citiesArray = citiesLocal;
     }
+    viewCities()
     //check if coming from second page if a location was searched
     //from stackoverflow https://stackoverflow.com/questions/17502071/transfer-data-from-one-html-file-to-another
     var url = document.location.href,
@@ -185,7 +186,7 @@ function clearCities() {
   }
 
  initilizeProgram();
- viewCities();
+ //viewCities();
 
 // creating a function for Form messages
 function displayMessage(type, message) {
