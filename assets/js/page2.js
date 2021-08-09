@@ -190,7 +190,7 @@ function listTrailfinder(lon, lat) {
     listContainerEl.innerHTML = "";
     imageContainerEl.innerHTML = "";
 
-    var mapListURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/trail.json?proximity=" + lon + "," + lat + "&access_token=pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw&limit=2";
+    var mapListURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/trail.json?proximity=" + lon + "," + lat + "&access_token=pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw&limit=5";
     var searchTrailResult;
     fetch(mapListURL)
         .then(function (response) {
@@ -227,14 +227,15 @@ function listTrailImages(searchTrailResult){
         //Fetch the image of each trail result by calling Serpapi
         var imgSearchText = searchTrailResult.features[i].place_name;
         console.log(imgSearchText);
-        var imageSearchUrl = "https://serpapi.com/search.json?q=" + imgSearchText + "&tbm=isch&ijn=0&api_key=d6db6046a49d044c851ae398fe7e90ecf61ede5961a226a8129f43fb2de747c3";
+        //var imageSearchUrl = "https://serpapi.com/search.json?q=" + imgSearchText + "&tbm=isch&ijn=0&api_key=d6db6046a49d044c851ae398fe7e90ecf61ede5961a226a8129f43fb2de747c3";
+        var imageSearchUrl = "https://api.unsplash.com/search/photos?query=" + imgSearchText + "&client_id=uDBXJ0P4LsC7LFw3XRsL72JDWXlolhLtMvAe667avc4";
         fetch(imageSearchUrl)
             .then(function (response) {
                 return response.json();
             })
             .then(function(data) {
                 console.log('entered serp response');
-                var imageResult = data.images_results[0];
+                var imageResult = data.results[0];
 
                 var card = document.createElement('div');
                 card.setAttribute("class","card");
@@ -245,7 +246,7 @@ function listTrailImages(searchTrailResult){
                 card.appendChild(cardName);
 
                 var img = document.createElement('img');
-                img.src = imageResult.thumbnail;
+                img.src = imageResult.urls.small;
                 card.appendChild(img);
 
                 imageContainerEl.appendChild(card);
