@@ -22,6 +22,19 @@ function initilizeProgram() {
     if (citiesLocal !== null) {
         citiesArray = citiesLocal;
     }
+    //check if coming from second page if a location was searched
+    //from stackoverflow https://stackoverflow.com/questions/17502071/transfer-data-from-one-html-file-to-another
+    debugger
+    var url = document.location.href,
+    params = url.split('?')[1].split('&'),
+    data = {}, tmp;
+    for (var i = 0, l = params.length; i < l; i++) {
+     tmp = params[i].split('=');
+     data[tmp[0]] = tmp[1];
+    }
+    if(data.cityName !== ''){
+        searchTrail(event, data.cityName);
+    }   
 }
 
 function viewCities() {
@@ -49,22 +62,22 @@ function displayCities() {
  // local storage process till here.............
  function searchTrail(event, cityId){
      event.preventDefault();
-     
+    
      var cityEl = document.getElementById(cityId).value;
      if (cityEl === "") {
          displayMessage("error", "Please enter a City !!");
          return;
      } else {
         cityEl = capitalizeFirstLetter(cityEl);
-    //prevents duplicate cities
-    if (citiesArray.includes(cityEl) === false) {
-        citiesArray.push(cityEl);
-        localStorage.setItem("citiesLocal", JSON.stringify(citiesArray));
+        //prevents duplicate cities
+        if (citiesArray.includes(cityEl) === false) {
+            citiesArray.push(cityEl);
+            localStorage.setItem("citiesLocal", JSON.stringify(citiesArray));
+        }
+        //going to call a function for displaying the local storage data
+        viewCities();
+        getWeatherInfo(cityEl);
     }
-    //going to call a function for displaying the local storage data
-    viewCities();
-    getWeatherInfo(cityEl);
-}
  }
 
 //Clearing the local storage

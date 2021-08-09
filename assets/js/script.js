@@ -46,6 +46,20 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Modal.init(elems);
 });
 
+/**
+ *Function passes users input from index to page2
+ *https://stackoverflow.com/questions/17502071/transfer-data-from-one-html-file-to-another
+ * @param {*} event - click event
+ * @param {*} cityId - string value of city name typed
+ */
+function searchTrail(event){
+    event.preventDefault();
+    debugger
+    let locationName = document.querySelector('#navCity');
+    let mapURLCity = mapUrl+'?cityName='+ encodeURIComponent(locationName.value);
+    document.location.href = mapURLCity;
+}
+
 //On page load start
 initilizeProgram();
 
