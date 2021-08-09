@@ -46,6 +46,25 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Modal.init(elems);
 });
 
+/**
+ *Function passes users input from index to page2
+ *https://stackoverflow.com/questions/17502071/transfer-data-from-one-html-file-to-another
+ * @param {*} event - click event
+ * @param {*} cityId - string value of city name typed
+ */
+function searchTrail(event){
+    event.preventDefault();
+
+    let locationName = document.querySelector('#navCity');
+    if (locationName === "") {
+        displayMessage("error", "No location given. Please enter a location!!");
+        return;
+    }else {
+        let mapURLLocation = mapUrl+'?locationName='+ encodeURIComponent(locationName.value);
+        document.location.href = mapURLLocation;
+    }
+}
+
 //On page load start
 initilizeProgram();
 
