@@ -9,7 +9,7 @@ var formMsg = document.querySelector("#formMsg");
 var redirectUrl = '404.html';
 var mapUrl = 'page2.html';
 var citiesArray = []; //object array for pulling out of local storage elements
-const map; //object that has to be inialized by function setUpMap
+map; //object that has to be inialized by function setUpMap
 
 //Navbar mobile functionality
 document.addEventListener('DOMContentLoaded', function () {
