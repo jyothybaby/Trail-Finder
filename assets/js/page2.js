@@ -24,7 +24,6 @@ function initilizeProgram() {
     }
     //check if coming from second page if a location was searched
     //from stackoverflow https://stackoverflow.com/questions/17502071/transfer-data-from-one-html-file-to-another
-    debugger
     var url = document.location.href,
     params = url.split('?')[1].split('&'),
     data = {}, tmp;
@@ -32,8 +31,8 @@ function initilizeProgram() {
      tmp = params[i].split('=');
      data[tmp[0]] = tmp[1];
     }
-    if(data.cityName !== ''){
-        searchTrail(event, data.cityName);
+    if(data.locationName !== ''){
+        storeSearchLocation(data.locationName);
     }   
 }
 
@@ -57,28 +56,34 @@ function displayCities() {
      }
  }
  
+//Dedicating function to handle searches from page2
+function searchedLocation(event, cityId){
+    event.preventDefault();
+    var cityEl = document.getElementById(cityId).value;
+    if (cityEl === "") {
+        displayMessage("error", "No location given, please give a location!!");
+        return;
+    }else{
+        storeSearchLocation(cityEl);
+    }
+}
 
 
- // local storage process till here.............
- function searchTrail(event, cityId){
-     event.preventDefault();
-    
-     var cityEl = document.getElementById(cityId).value;
-     if (cityEl === "") {
-         displayMessage("error", "Please enter a City !!");
-         return;
-     } else {
-        cityEl = capitalizeFirstLetter(cityEl);
+ /**
+  * Called to store in local storage the location name being searched
+  * @param {*} searched string of searched area name
+  */
+ function storeSearchLocation(searched){
+    searched = capitalizeFirstLetter(searched);
         //prevents duplicate cities
-        if (citiesArray.includes(cityEl) === false) {
-            citiesArray.push(cityEl);
+        if (citiesArray.includes(searched) === false) {
+            citiesArray.push(searched);
             localStorage.setItem("citiesLocal", JSON.stringify(citiesArray));
         }
         //going to call a function for displaying the local storage data
         viewCities();
-        getWeatherInfo(cityEl);
-    }
- }
+        getWeatherInfo(searched);
+}
 
 //Clearing the local storage
 function clearCities() {

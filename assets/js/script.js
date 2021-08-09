@@ -54,10 +54,15 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function searchTrail(event){
     event.preventDefault();
-    debugger
+
     let locationName = document.querySelector('#navCity');
-    let mapURLCity = mapUrl+'?cityName='+ encodeURIComponent(locationName.value);
-    document.location.href = mapURLCity;
+    if (locationName === "") {
+        displayMessage("error", "No location given. Please enter a location!!");
+        return;
+    }else {
+        let mapURLLocation = mapUrl+'?locationName='+ encodeURIComponent(locationName.value);
+        document.location.href = mapURLLocation;
+    }
 }
 
 //On page load start
