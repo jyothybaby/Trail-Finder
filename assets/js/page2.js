@@ -22,6 +22,18 @@ function initilizeProgram() {
     if (citiesLocal !== null) {
         citiesArray = citiesLocal;
     }
+    //check if coming from second page if a location was searched
+    //from stackoverflow https://stackoverflow.com/questions/17502071/transfer-data-from-one-html-file-to-another
+    var url = document.location.href,
+    params = url.split('?')[1].split('&'),
+    data = {}, tmp;
+    for (var i = 0, l = params.length; i < l; i++) {
+     tmp = params[i].split('=');
+     data[tmp[0]] = tmp[1];
+    }
+    if(data.locationName !== ''){
+        storeSearchLocation(data.locationName);
+    }   
 }
 
 function viewCities() {
@@ -36,7 +48,6 @@ function viewCities() {
 
 function displayCities() {
     cityButtonList.innerHTML = "";
-
      for (var i = 0; i < citiesArray.length; i++) {
          var city = citiesArray[i];
          var cityButton = document.createElement("li");
@@ -45,28 +56,34 @@ function displayCities() {
      }
  }
  
- 
-
- // local storage process till here.............
- function searchTrail(event, cityId){
-     event.preventDefault();
-     
-     var cityEl = document.getElementById(cityId).value;
-     if (cityEl === "") {
-         displayMessage("error", "Please enter a City !!");
-         return;
-     } else {
-        cityEl = capitalizeFirstLetter(cityEl);
-    //prevents duplicate cities
-    if (citiesArray.includes(cityEl) === false) {
-        citiesArray.push(cityEl);
-        localStorage.setItem("citiesLocal", JSON.stringify(citiesArray));
+//Dedicating function to handle searches from page2
+function searchedLocation(event, cityId){
+    event.preventDefault();
+    var cityEl = document.getElementById(cityId).value;
+    if (cityEl === "") {
+        displayMessage("error", "No location given, please give a location!!");
+        return;
+    }else{
+        storeSearchLocation(cityEl);
     }
-    //going to call a function for displaying the local storage data
-    viewCities();
-    getWeatherInfo(cityEl);
 }
- }
+
+
+ /**
+  * Called to store in local storage the location name being searched
+  * @param {*} searched string of searched area name
+  */
+ function storeSearchLocation(searched){
+    searched = capitalizeFirstLetter(searched);
+        //prevents duplicate cities
+        if (citiesArray.includes(searched) === false) {
+            citiesArray.push(searched);
+            localStorage.setItem("citiesLocal", JSON.stringify(citiesArray));
+        }
+        //going to call a function for displaying the local storage data
+        viewCities();
+        getWeatherInfo(searched);
+}
 
 //Clearing the local storage
 function clearCities() {
@@ -74,9 +91,6 @@ function clearCities() {
     citiesArray = [];
     cityButtonList.innerHTML = "";
 }
-
-
-     
 
  function getWeatherInfo(cityEl) {
      var apiurl = "https://api.openweathermap.org/data/2.5/weather?q= "+cityEl+"&appid=d74649d085e772a2cff36556b7a6a792"; 
@@ -132,27 +146,7 @@ function clearCities() {
     });
  }
  
- function listTrailfinder(lon,lat) {
-     var mapListURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/trail.json?proximity="+lon+","+lat+"&access_token=pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw&limit=10";
-     fetch(mapListURL)
-     .then(function (response){
-         return response.json();
-     })
-     .then(function (data){
-         console.log("trails list: ", data);
-         console.log("data length :", data.features.length);
-         listContainerEl.innerHTML = "";
-         for (var i=0; i<data.features.length; i++) {
-             var card = document.createElement("div");
-             card.textContent = data.features[i].place_name;
-             listContainerEl.appendChild(card);
-             const marker2 = new mapboxgl.Marker({ color: 'blue' })
-                 .setLngLat(data.features[i].geometry.coordinates)
-                 .addTo(map);
-         }
-     });
- }
- 
+
  /**
   * This initializes the modal window to open when triggered
   *
@@ -192,19 +186,6 @@ function clearCities() {
 
  initilizeProgram();
  viewCities();
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-
-
-
 
 // creating a function for Form messages
 function displayMessage(type, message) {
@@ -297,28 +278,6 @@ function listTrailImages(searchTrailResult){
 
     }
 }
-
-/**
- * This initializes the modal window to open when triggered
- *
-* Options for the modal
-* @member Modal#options
-* @prop {Number} [opacity=0.5] - Opacity of the modal overlay
-* @prop {Number} [inDuration=250] - Length in ms of enter transition
-* @prop {Number} [outDuration=250] - Length in ms of exit transition
-* @prop {Function} onOpenStart - Callback function called before modal is opened
-* @prop {Function} onOpenEnd - Callback function called after modal is opened
-* @prop {Function} onCloseStart - Callback function called before modal is closed
-* @prop {Function} onCloseEnd - Callback function called after modal is closed
-* @prop {Boolean} [dismissible=true] - Allow modal to be dismissed by keyboard or overlay click
-* @prop {String} [startingTop='4%'] - startingTop
-* @prop {String} [endingTop='10%'] - endingTop
-*/
-document.addEventListener('DOMContentLoaded', function () {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems);
-});
-
 
 
 
