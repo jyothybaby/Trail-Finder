@@ -12,6 +12,10 @@ nav {
   box-shadow: none !important;
 }
 
+#mobile-demo {
+  background-color: var(--green);
+}
+
 .nav-wrapper {
   background-color: var(--green);
   box-shadow: none !important;
@@ -35,6 +39,14 @@ nav {
   background-color: var(--green);
   color: var(--white);
   box-shadow: 5px;
+}
+
+.nav-search-mobile {
+  background-color: var(--white);
+  color: var(--black);
+  border-radius: 5px;
+  box-shadow: none;
+  transition: 0.5s;
 }
 
 
