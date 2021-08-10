@@ -70,7 +70,7 @@ function searchTrailMobile(event){
     event.preventDefault();
 
     let locationName = document.querySelector('#navCity-mobile');
-    if (locationName === "") {
+    if (locationName.value === "") {
         displayMessage("error", "No location given. Please enter a location!!");
         return;
     }else {
