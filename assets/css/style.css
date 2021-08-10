@@ -127,8 +127,14 @@ nav {
 
 .modal-content{
   background-color: var(--green);
-  color: var(--white);
+  color: var(--black);
 }
+
+.modal-content .section{
+  background-color: var(--white);
+  border-radius: 10px;
+}
+
 
 .modal-footer a{
   background-color: var(--green);
