@@ -341,8 +341,15 @@ footer {
   min-width: 400px;
 }
 
+#listContainer {
+  margin-left: 30px;
+}
+
 @media screen and (max-width:768px) {
   #imageContainer {
+    flex-direction: column;
+  }
+  #milesButtonAndSearchCity {
     flex-direction: column;
   }
 }

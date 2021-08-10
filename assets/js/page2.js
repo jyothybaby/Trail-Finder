@@ -10,6 +10,7 @@ var redirectUrl = '404.html';
 var mapUrl = 'page2.html';
 var citiesArray = []; //object array for pulling out of local storage elements
 var map; //object that has to be inialized by function setUpMap
+var formMsgMobile = document.querySelector("#formMsgMobile");
 
 //Navbar mobile functionality
 document.addEventListener('DOMContentLoaded', function () {
@@ -65,6 +66,7 @@ function searchedLocation(event, cityId){
         displayMessage("error", "No location given, please give a location!!");
         return;
     }else{
+        displayMessage("sucess", "");
         storeSearchLocation(cityEl);
     }
 }
@@ -73,14 +75,18 @@ function searchedLocationMobile(event, cityIdMobile){
     event.preventDefault();
     var cityEl = document.getElementById(cityIdMobile).value;
     if (cityEl === "") {
-        displayMessage("error", "No location given, please give a location!!");
+        displayMessageMobile("error", "No location given, please give a location!!");
         return;
     }else{
+        displayMessageMobile("sucess", "");
         storeSearchLocation(cityEl);
     }
 }
 
-
+function displayMessageMobile(type, message) {
+    formMsgMobile.textContent = message;
+    formMsgMobile.setAttribute("class", type);
+}
 
 
  /**
