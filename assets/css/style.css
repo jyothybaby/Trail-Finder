@@ -238,9 +238,20 @@ footer {
   flex-direction: column;
 }
 .clear-city {
-  padding: 10px;
-  background-color: rgb(145, 240, 145);
+  background-color: var(--white);
+  color: var(--black);
+  border-radius: 5px;
+  box-shadow: none;
+  transition: 0.5s;
+  margin-left: 20px;
 }
+
+.clear-city:hover {
+  background-color: var(--green);
+  color: var(--white);
+  box-shadow: 5px;
+}
+
 #apiWeatherAndMap {
   display: flex;
   flex: 1;
