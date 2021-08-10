@@ -79,6 +79,11 @@ function searchedLocationMobile(event, cityIdMobile){
     }
 }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> main
 
  /**
   * Called to store in local storage the location name being searched

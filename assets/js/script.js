@@ -65,6 +65,19 @@ function searchTrail(event){
     }
 }
 
+function searchTrailMobile(event){
+    event.preventDefault();
+
+    let locationName = document.querySelector('#navCity-mobile');
+    if (locationName === "") {
+        displayMessage("error", "No location given. Please enter a location!!");
+        return;
+    }else {
+        let mapURLLocation = mapUrl+'?locationName='+ encodeURIComponent(locationName.value);
+        document.location.href = mapURLLocation;
+    }
+}
+
 //On page load start
 initilizeProgram();
 
