@@ -6,8 +6,6 @@ var WeatherParametersEl = document.querySelector("#WeatherParameters");
 var redirectUrl = '404.html';
 var mapUrl = 'page2.html';
 var citiesArray = [];
-var formMsg = document.querySelector("#formMsg");
-var formMsgMobile = document.querySelector("#formMsgMobile");
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -58,11 +56,10 @@ function searchTrail(event){
     event.preventDefault();
 
     let locationName = document.querySelector('#navCity');
-    if (locationName.value === "") {
+    if (locationName === "") {
         displayMessage("error", "No location given. Please enter a location!!");
         return;
     }else {
-        displayMessage("sucess", "");
         let mapURLLocation = mapUrl+'?locationName='+ encodeURIComponent(locationName.value);
         document.location.href = mapURLLocation;
     }
@@ -72,24 +69,13 @@ function searchTrailMobile(event){
     event.preventDefault();
 
     let locationName = document.querySelector('#navCity-mobile');
-    if (locationName.value === "") {
-        displayMessageMobile("error", "No location given. Please enter a location!!");
+    if (locationName === "") {
+        displayMessage("error", "No location given. Please enter a location!!");
         return;
     }else {
-        displayMessageMobile("sucess", " ");
         let mapURLLocation = mapUrl+'?locationName='+ encodeURIComponent(locationName.value);
         document.location.href = mapURLLocation;
     }
-}
-
-function displayMessage(type, message) {
-    formMsg.textContent = message;
-    formMsg.setAttribute("class", type);
-}
-
-function displayMessageMobile(type, message) {
-    formMsgMobile.textContent = message;
-    formMsgMobile.setAttribute("class", type);
 }
 
 //On page load start
