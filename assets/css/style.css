@@ -41,13 +41,19 @@ nav {
   box-shadow: 5px;
 }
 
-.nav-search-mobile {
+
+
+#mobile-modal-trigger, #mobile-nav-search{
   background-color: var(--white);
   color: var(--black);
   border-radius: 5px;
   box-shadow: none;
   transition: 0.5s;
 }
+
+
+
+
 
 
 
