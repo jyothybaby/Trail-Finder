@@ -169,19 +169,19 @@ function clearCities() {
          zoom:13
     });
 
-    map.on('load', () => {
-        map.addSource('dem', {
-            'type': 'raster-dem',
-            'url': 'mapbox://mapbox-terrain-dem-v1'
-        });
-        map.addLayer(
-            {
-                'id': 'hillshading',
-                'source': 'dem',
-                'type': 'hillshade'
-            },
-        );
-    });
+    // map.on('load', () => {
+    //     map.addSource('dem', {
+    //         'type': 'raster-dem',
+    //         'url': 'mapbox://mapbox-terrain-dem-v1'
+    //     });
+    //     map.addLayer(
+    //         {
+    //             'id': 'hillshading',
+    //             'source': 'dem',
+    //             'type': 'hillshade'
+    //         },
+    //     );
+    // });
 }
  /**
   * This initializes the modal window to open when triggered
