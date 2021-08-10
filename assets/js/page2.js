@@ -69,6 +69,19 @@ function searchedLocation(event, cityId){
     }
 }
 
+function searchedLocationMobile(event, cityIdMobile){
+    event.preventDefault();
+    var cityEl = document.getElementById(cityIdMobile).value;
+    if (cityEl === "") {
+        displayMessage("error", "No location given, please give a location!!");
+        return;
+    }else{
+        storeSearchLocation(cityEl);
+    }
+}
+
+
+
 
  /**
   * Called to store in local storage the location name being searched
