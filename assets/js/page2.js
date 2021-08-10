@@ -238,13 +238,6 @@ function clearCities() {
         })
         .then(function (data) {
             searchTrailResult = data;
-            console.log("trails list: ", searchTrailResult);
-            console.log("data length :", searchTrailResult.features.length);
-            
-
-            //  console.log("trails list: ", data);
-            //  console.log("data length :", data.features.length);
-
             for (var i = 0; i < searchTrailResult.features.length; i++) {
                 var card = document.createElement("div");
                 card.textContent = searchTrailResult.features[i].place_name;
@@ -266,7 +259,7 @@ function listTrailImages(searchTrailResult){
     for (var i = 0; i < searchTrailResult.features.length; i++) {
         //Fetch the image of each trail result by calling Serpapi
         var imgSearchText = searchTrailResult.features[i].place_name;
-        console.log(imgSearchText);
+        // console.log(imgSearchText);
         //var imageSearchUrl = "https://serpapi.com/search.json?q=" + imgSearchText + "&tbm=isch&ijn=0&api_key=d6db6046a49d044c851ae398fe7e90ecf61ede5961a226a8129f43fb2de747c3";
         var imageSearchUrl = "https://api.unsplash.com/search/photos?query=" + imgSearchText + "&client_id=uDBXJ0P4LsC7LFw3XRsL72JDWXlolhLtMvAe667avc4";
         fetch(imageSearchUrl)
@@ -274,7 +267,7 @@ function listTrailImages(searchTrailResult){
                 return response.json();
             })
             .then(function(data) {
-                console.log('entered serp response');
+                // console.log('entered serp response');
                 var imageResult = data.results[0];
 
                 var card = document.createElement('div');
