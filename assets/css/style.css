@@ -18,12 +18,11 @@ nav {
 }
 
 .brand-logo {
-  margin-left: 30px;
+  margin-left: 10px;
 }
 
 .nav-search,
-.modal-trigger,
-.contact-btn {
+.modal-trigger {
   background-color: var(--white);
   color: var(--black);
   border-radius: 5px;
@@ -32,55 +31,13 @@ nav {
 }
 
 .nav-search:hover,
-.modal-trigger:hover,
-.contact-btn:hover {
+.modal-trigger:hover {
   background-color: var(--green);
   color: var(--white);
   box-shadow: 5px;
 }
 
-/* label color */
-#modal1 .input-field label {
-  color: #000;
-}
-/* label focus color */
-#modal1 .input-field input[type="text"]:focus + label {
-  color: #000;
-}
-/* label underline focus color */
-#modal1 .input-field input[type="text"]:focus {
-  border-bottom: 1px solid #000;
-  box-shadow: 0 1px 0 0 #000;
-}
-/* valid color */
-#modal1 .input-field input[type="text"].valid {
-  border-bottom: 1px solid #000;
-  box-shadow: 0 1px 0 0 #000;
-}
-/* invalid color */
-#modal1 .input-field input[type="text"].invalid {
-  border-bottom: 1px solid #000;
-  box-shadow: 0 1px 0 0 #000;
-}
-/* icon prefix focus color */
-#modal1 .input-field .prefix.active {
-  color: #717e63;
-  position: relative;
-}
 
-#modal1 .input-field .prefix {
-  color: #717e6325;
-}
-
-.user_send a {
-  background-color: #717e63;
-  color: white;
-}
-
-.our_message h4 {
-  float: right;
-  margin-right: 10px;
-}
 
 #left-div {
   position: absolute;
@@ -98,19 +55,20 @@ nav {
 }
 
 #right-div {
+  display:flex;
+  flex-direction: column;
   position: absolute;
-  top: 0;
+  top: 35%;
   right: 0;
   left: 50%;
   bottom: 0;
   text-align: center;
+
 }
 
 #right-div h4 {
-  position: absolute;
   color: var(--black);
-  font-size: 45px;
-  top: 40%;
+  font-size: 3vw;
 }
 
 #right-div h4 .span {
@@ -135,10 +93,6 @@ nav {
 }
 
 .mainbutton {
-  position: relative;
-  top: 57%;
-  width: 150px;
-  height: 50px;
   background-color: var(--green);
   color: var(--white);
   border-radius: 5px;

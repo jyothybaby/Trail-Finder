@@ -22,6 +22,7 @@ function initilizeProgram() {
     if (citiesLocal !== null) {
         citiesArray = citiesLocal;
     }
+    viewCities()
     //check if coming from second page if a location was searched
     //from stackoverflow https://stackoverflow.com/questions/17502071/transfer-data-from-one-html-file-to-another
     var url = document.location.href,
@@ -40,7 +41,6 @@ function viewCities() {
     var citiesLocal = JSON.parse(localStorage.getItem("citiesLocal"));
     if (citiesLocal !== null) {
         citiesArray = citiesLocal;
-        console.log("citiesArray", citiesArray)
         displayCities();
     }
 }
@@ -197,6 +197,15 @@ function clearCities() {
     return splitStr.join(' '); 
   }
 
+ initilizeProgram();
+ //viewCities();
+
+// creating a function for Form messages
+function displayMessage(type, message) {
+    formMsg.textContent = message;
+    formMsg.setAttribute("class", type);
+}
+
 function listTrailfinder(lon, lat) {
     //Clear earlier results
     listContainerEl.innerHTML = "";
@@ -272,8 +281,7 @@ function listTrailImages(searchTrailResult){
     }
 }
 
-initilizeProgram();
-viewCities();
+
 
 
 
