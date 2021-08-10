@@ -8,10 +8,16 @@ Our application helps endures of the outdoors to search for hiking trails within
             I WANT to discover trails in my location        
             SO THAT I can prepare for a hiking. 
 
-## Api: 
-      1. Google map -Pictures 
-      2. YouTube - Video
-      3. Weather 
+## Server Side Api: 
+      1. OpenWeatherMap 
+      2. MapBox API
+      3. Unsplash
+
+## Third Party Apis:
+            1. MomentJS
+            2. Materialize 
+            3. Google fonts API
+      
 
 ## Breakdown: 
         1. review Api documentation
@@ -25,11 +31,13 @@ Our application helps endures of the outdoors to search for hiking trails within
        
        
 ## Landing Page: 
-![Homepage wireframe](https://user-images.githubusercontent.com/73779089/127587717-01b69d89-2c4f-4a15-b3e5-f7413cae306f.PNG)
+![screenshot](https://user-images.githubusercontent.com/73779089/128943672-fd1ec338-9e26-49f2-b160-772c9d8e19c6.png)
 
             
 ## Finding trail page:
-![Secondpage wireframe](https://user-images.githubusercontent.com/73779089/127587517-13260176-d56e-4fdb-b4cf-c00b778b3e3c.PNG)
+![Screenshot 2021-08-11 013541](https://user-images.githubusercontent.com/73779089/128943695-7cc55567-71b1-407c-9265-5d9de8a8adf1.png)
+
+
 
 
 ## Deployed page link 
