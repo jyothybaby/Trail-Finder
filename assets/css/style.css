@@ -2,6 +2,9 @@
   --green: #717e63;
   --black: #181a27;
   --white: #ffefe5;
+  --shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+  inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+  5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -123,6 +126,45 @@ nav {
   background-color: var(--white);
   color: var(--black);
   box-shadow: 2px;
+}
+
+.modal-content{
+  background-color: var(--green);
+  color: var(--white);
+}
+
+.modal-content .section{
+  box-shadow: var(--shadow); ;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.modal-content ul li{
+display: inline-block;
+padding: 10px;
+transition: 0.5s;
+}
+
+.modal-content ul li:hover{
+  transform: translateY(-15px);
+}
+
+
+
+.repo-link{
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--black);
+  cursor: pointer;
+}
+
+.modal-footer a{
+  background-color: var(--green);
+  color: var(--white);
+}
+
+.modal-footer{
+  background-color: var(--white)
 }
 
 #topbarsearch .input-field .prefix {
