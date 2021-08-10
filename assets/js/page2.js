@@ -9,8 +9,7 @@ var formMsg = document.querySelector("#formMsg");
 var redirectUrl = '404.html';
 var mapUrl = 'page2.html';
 var citiesArray = []; //object array for pulling out of local storage elements
-map; //object that has to be inialized by function setUpMap
-
+var map; //object that has to be inialized by function setUpMap
 //Navbar mobile functionality
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.sidenav');
@@ -28,8 +27,9 @@ function initilizeProgram() {
     var url = document.location.href,
     params = url.split('?')[1].split('&'),
     data = {}, tmp;
+    debugger
     for (var i = 0, l = params.length; i < l; i++) {
-     tmp = params[i].split('=');
+     tmp = params[i].split('=');      
      data[tmp[0]] = tmp[1];
     }
     if(data.locationName !== ''){
@@ -60,6 +60,17 @@ function displayCities() {
 function searchedLocation(event, cityId){
     event.preventDefault();
     var cityEl = document.getElementById(cityId).value;
+    if (cityEl === "") {
+        displayMessage("error", "No location given, please give a location!!");
+        return;
+    }else{
+        storeSearchLocation(cityEl);
+    }
+}
+
+function searchedLocationMobile(event, cityIdMobile){
+    event.preventDefault();
+    var cityEl = document.getElementById(cityIdMobile).value;
     if (cityEl === "") {
         displayMessage("error", "No location given, please give a location!!");
         return;
@@ -142,24 +153,23 @@ function clearCities() {
          container: 'map',
          style: 'mapbox://styles/adam-niggebrugge/cks2lfvnt3ymv17pkmhxwlh83',
          center: center,
-         zoom:15
+         zoom:13
     });
- }
- 
- map.on('load', () => {
-    map.addSource('dem', {
-        'type': 'raster-dem',
-         'url': 'mapbox://mapbox-terrain-dem-v1'
-    });
-    map.addLayer(
-        {
-            'id': 'hillshading',
-            'source': 'dem',
-            'type': 'hillshade'
-        },
-    );
-});
 
+    map.on('load', () => {
+        map.addSource('dem', {
+            'type': 'raster-dem',
+            'url': 'mapbox://mapbox-terrain-dem-v1'
+        });
+        map.addLayer(
+            {
+                'id': 'hillshading',
+                'source': 'dem',
+                'type': 'hillshade'
+            },
+        );
+    });
+}
  /**
   * This initializes the modal window to open when triggered
   *
@@ -200,18 +210,13 @@ function clearCities() {
  initilizeProgram();
  //viewCities();
 
-// creating a function for Form messages
-function displayMessage(type, message) {
-    formMsg.textContent = message;
-    formMsg.setAttribute("class", type);
-}
 
-function listTrailfinder(lon, lat) {
+ function listTrailfinder(lon, lat) {
     //Clear earlier results
     listContainerEl.innerHTML = "";
     imageContainerEl.innerHTML = "";
 
-    var mapListURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/trail.json?proximity="+lon+","+lat+"&access_token=pk.eyJ1IjoiYWRhbS1uaWdnZWJydWdnZSIsImEiOiJja3JzMXN1M2EwaHJoMzF1aHRsNnh3ejNiIn0.qgb2dKPkqB5Lx5iukcDSdA&limit=4";
+    var mapListURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/trail.json?proximity=" + lon + "," + lat + "&access_token=pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw&limit=5";
     var searchTrailResult;
     fetch(mapListURL)
         .then(function (response) {
@@ -278,17 +283,6 @@ function listTrailImages(searchTrailResult){
     // from origin 'http://localhost:5500' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. 
     // If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
     // Added chrome extension Allow CORS for time being. We need to find a permanent solution for this.
+
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
