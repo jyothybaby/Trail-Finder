@@ -27,14 +27,17 @@ function initilizeProgram() {
     var url = document.location.href,
     params = url.split('?')[1].split('&'),
     data = {}, tmp;
-    debugger
     for (var i = 0, l = params.length; i < l; i++) {
      tmp = params[i].split('=');      
      data[tmp[0]] = tmp[1];
     }
-    if(data.locationName !== ''){
-        storeSearchLocation(data.locationName);
-    }   
+    //Check if there were spaces sent in the URL
+    if(data.locationName.includes('%20')){
+        var splitStr = data.locationName.split('%20');
+        data.locationName = splitStr.join(' ');
+    }       
+    storeSearchLocation(data.locationName);
+       
 }
 
 function viewCities() {
@@ -79,11 +82,6 @@ function searchedLocationMobile(event, cityIdMobile){
     }
 }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> main
 
  /**
   * Called to store in local storage the location name being searched
@@ -211,6 +209,7 @@ function clearCities() {
     // Directly return the joined string
     return splitStr.join(' '); 
   }
+
 
  initilizeProgram();
  //viewCities();
