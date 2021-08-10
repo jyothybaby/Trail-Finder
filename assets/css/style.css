@@ -12,6 +12,10 @@ nav {
   box-shadow: none !important;
 }
 
+#mobile-demo {
+  background-color: var(--green);
+}
+
 .nav-wrapper {
   background-color: var(--green);
   box-shadow: none !important;
@@ -36,6 +40,20 @@ nav {
   color: var(--white);
   box-shadow: 5px;
 }
+
+
+
+#mobile-modal-trigger, #mobile-nav-search{
+  background-color: var(--white);
+  color: var(--black);
+  border-radius: 5px;
+  box-shadow: none;
+  transition: 0.5s;
+}
+
+
+
+
 
 
 
@@ -226,9 +244,20 @@ footer {
   flex-direction: column;
 }
 .clear-city {
-  padding: 10px;
-  background-color: rgb(145, 240, 145);
+  background-color: var(--white);
+  color: var(--black);
+  border-radius: 5px;
+  box-shadow: none;
+  transition: 0.5s;
+  margin-left: 20px;
 }
+
+.clear-city:hover {
+  background-color: var(--green);
+  color: var(--white);
+  box-shadow: 5px;
+}
+
 #apiWeatherAndMap {
   display: flex;
   flex: 1;
