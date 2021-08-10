@@ -24,20 +24,22 @@ function initilizeProgram() {
     viewCities()
     //check if coming from second page if a location was searched
     //from stackoverflow https://stackoverflow.com/questions/17502071/transfer-data-from-one-html-file-to-another
-    var url = document.location.href,
-    params = url.split('?')[1].split('&'),
-    data = {}, tmp;
-    for (var i = 0, l = params.length; i < l; i++) {
-     tmp = params[i].split('=');      
-     data[tmp[0]] = tmp[1];
-    }
-    //Check if there were spaces sent in the URL
-    if(data.locationName.includes('%20')){
-        var splitStr = data.locationName.split('%20');
-        data.locationName = splitStr.join(' ');
-    }       
-    storeSearchLocation(data.locationName);
-       
+    var url = document.location.href;
+    if(url.includes('?')){
+        
+        var params = url.split('?')[1].split('&'),
+        data = {}, tmp;
+        for (var i = 0, l = params.length; i < l; i++) {
+        tmp = params[i].split('=');      
+        data[tmp[0]] = tmp[1];
+        }
+        //Check if there were spaces sent in the URL
+        if(data.locationName.includes('%20')){
+            var splitStr = data.locationName.split('%20');
+            data.locationName = splitStr.join(' ');
+        }       
+        getWeatherInfo(data.locationName);
+    }  
 }
 
 function viewCities() {
@@ -77,7 +79,7 @@ function searchedLocation(event, cityId){
         displayMessage("error", "No location given, please give a location!!");
         return;
     }else{
-        storeSearchLocation(cityEl);
+        getWeatherInfo(cityEl);
     }
 }
 
@@ -88,7 +90,7 @@ function searchedLocationMobile(event, cityIdMobile){
         displayMessage("error", "No location given, please give a location!!");
         return;
     }else{
-        storeSearchLocation(cityEl);
+        getWeatherInfo(cityEl);
     }
 }
 
@@ -98,7 +100,7 @@ function searchedLocationMobile(event, cityIdMobile){
   * @param {*} searched string of searched area name
   */
  function storeSearchLocation(searched){
-    searched = capitalizeFirstLetter(searched);
+    
         //prevents duplicate cities
         if (citiesArray.includes(searched) === false) {
             citiesArray.push(searched);
@@ -106,7 +108,6 @@ function searchedLocationMobile(event, cityIdMobile){
         }
         //going to call a function for displaying the local storage data
         viewCities();
-        getWeatherInfo(searched);
 }
 
 //Clearing the local storage
@@ -127,6 +128,7 @@ function clearCities() {
          }
      })
      .then (function (data){
+        cityEl = capitalizeFirstLetter(cityEl);
          var day = moment().format("ddd MMM Do");  //Used Moment.js for dispalying the date
          var temp = Math.round((((data.main.temp) - 273.15) * 1.8) + 32);
          //This will clear out any previously created elements
@@ -150,6 +152,7 @@ function clearCities() {
          //ATTENTION: First parameter will be LONGITUDE then Latitude
          setUpMap([lon,lat]);
          //showMarker(lon,lat);
+         storeSearchLocation(cityEl);
          listTrailfinder(lon,lat);
     })
  }
