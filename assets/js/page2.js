@@ -169,7 +169,7 @@ function clearCities() {
          container: 'map',
          style: 'mapbox://styles/adam-niggebrugge/cks2lfvnt3ymv17pkmhxwlh83',
          center: center,
-         zoom:13
+         zoom:10
     });
 
     // map.on('load', () => {
