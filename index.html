@@ -1,57 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Mapbox link -->
-  <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
-  <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet" />
-
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-  <link rel="shortcut icon" type="image/png" href="assets/images/tree.png" />
-  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-
-  <link rel="stylesheet" href="./assets/css/style.css" />
-  <title>Trail Finder</title>
-</head>
-
-<body>
-  <div class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper" id="navigation">
-        <a href="index.html" class="brand-logo">Trail Finder</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-          <li>
-            <div class="center row">
-              <div class="col s12 ">
-                <div class="row" id="topbarsearch">
-                  <div class="input-field col s6 s12">
-                    <i class="material-icons prefix">search</i>
-                    <input id="navCity" type="text" placeholder="State, City, etc..">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-
-          <li>
-            <a class="btn nav-search" onclick="searchTrail(event)">Search</a>
-          </li>
-          <li>
-            <a class="btn modal-trigger" href="#modalAboutUs">About Us</a>
-          </li>
-        </ul>
-
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -167,11 +115,11 @@
           <span class="span">outdoors</span> to find the
           <span class="span">perfect</span> <span class="hike"> hike</span>
         </h4>
-
       </div>
-    </nav>
-  </div>
-
+      <button type="button" class="mainbutton btn" onclick="switchPages(event)">
+        Find a Trail!
+      </button>
+    </div>
 
     <div id="left-div">
       <img
@@ -181,117 +129,62 @@
       />
     </div>
 
+    <!-- Modal Structure -->
+    <div id="modalAboutUs" class="modal bottom-sheet">
+      <div class="modal-content">
+        
+        <h4>About Us</h4>
+        <p>
+          Thank you for checking out our Trail Finder App. If you would like to
+          learn more about this project please follow
+          <a href="https://github.com/jyothybaby/Trail-Finder" class="repo-link" target="blank">THIS LINK</a> to
+          learn more about the project.
+        </p>
+        <h4>Our Team</h4>
 
-  <ul class="sidenav" id="mobile-demo">
-    <li>
-      <a class="btn modal-trigger" href="#modalAboutUs" id="mobile-modal-trigger">About Us</a>
-    </li>
-    <li>
-
-      <div>
-        <div id="topbarsearch">
-          <div class="input-field col s6 s12 ">
-            <i class="material-icons prefix white-text">search</i>
-            <input id="navCity-mobile" type="text" placeholder="State, City etc...">
-          </div>
-        </div>
-      </div>
-    </li>
-    <li>
-      <a class="btn nav-search" id="mobile-nav-search" onclick="searchTrailMobile(event)">Search</a>
-    </li>
-    <div id="formMsgMobile"></div>
-  </ul>
-
-  <div id="right-div" class="valign-wrapper">
-    <div class="typewriter">
-      <h4 class="center-align">
-        <span class="span">Trail Finder</span> helps endures of the
-        <span class="span">outdoors</span> to find the
-        <span class="span">perfect</span> <span class="hike"> hike</span>
-      </h4>
-    </div>
-    <button type="button" class="mainbutton btn" onclick="switchPages(event)">
-      Find a Trail!
-    </button>
-    <div id="formMsg"></div>
-
-  </div>
-
-  <div id="left-div">
-    <img src="assets/images/nature.jpg" class="responsive-img" alt="Hiker Hero image" />
-  </div>
-
-  <!-- Modal Structure -->
-  <div id="modalAboutUs" class="modal bottom-sheet">
-    <div class="modal-content">
-
-      <h4>About Us</h4>
-      <p>
-        Thank you for checking out our Trail Finder App. If you would like to
-        learn more about this project please follow
-        <a href="https://github.com/jyothybaby/Trail-Finder" class="repo-link" target="blank">THIS LINK</a> to
-        learn more about the project.
-      </p>
-      <h4>Our Team</h4>
-
-      <div class="section">
+        <div class="section">
         <h5>Jyothy V Baby</h5>
         <ul>
-          <li> <a href="https://github.com/jyothybaby"><img src="assets/images/github.png" /></a> </li>
-          <li>
-            <!--other links or images can be added as list elements-->
-          </li>
+       <li> <a href="https://github.com/jyothybaby"><img src="assets/images/github.png"/></a> </li>
+       <li> <!--other links or images can be added as list elements--> </li>
         </ul>
-      </div>
+        </div>
 
-      <br>
+        <br>
 
-      <div class="section">
+        <div class="section">
         <h5>Nayef Kanaan</h5>
         <ul>
-          <li> <a href="https://github.com/NBK-01" target="blank"><img src="assets/images/github.png" /></a> </li>
-          <li> <a href="https://nbk-01.github.io/Portfolio-Nayef-Kanaan/" target="blank"> <img
-                src="assets/images/portfolio.png" /> </a></li>
+       <li> <a href="https://github.com/NBK-01" target="blank"><img src="assets/images/github.png"/></a> </li>
+       <li> <a href="https://nbk-01.github.io/Portfolio-Nayef-Kanaan/" target="blank"> <img src="assets/images/portfolio.png"/> </a></li>
         </ul>
       </div>
 
       <br>
-      <div class="section">
+<div class="section">
         <h5>Oscar Vizcaino</h5>
         <ul>
-          <li> <a href="https://github.com/oscarV42"> <img src="assets/images/github.png" /> </a> </li>
-          <li>
-            <!--other links or images can be added as list elements-->
-          </li>
-        </ul>
-      </div>
+       <li> <a href="https://github.com/oscarV42"> <img src="assets/images/github.png"/> </a> </li>
+       <li> <!--other links or images can be added as list elements--> </li>
+      </ul>
+</div>
 
-      <br>
+<br>
 
-      <div class="section">
+<div class="section">
         <h5>I A Niggebrugge</h5>
         <ul>
-          <li> <a href="https://github.com/adam-niggebrugge"><img src="assets/images/github.png" /></a> </li>
-          <li>
-            <!--other links or images can be added as list elements-->
-          </li>
+        <li> <a href="https://github.com/adam-niggebrugge"><img src="assets/images/github.png"/></a> </li>
+        <li> <!--other links or images can be added as list elements--> </li>
         </ul>
+</div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat"
+          >Back To Trails!</a
+        >
       </div>
     </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Back To Trails!</a>
-    </div>
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="https://kit.fontawesome.com/3c309b0cab.js" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-  <script src="./assets/js/script.js"></script>
-</body>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script
@@ -306,7 +199,6 @@
     ></script>
     <script src="./assets/js/script.js"></script>
   </body>
-
 </html>
 
 <!-- Called the function "searchTrail(event,'city')" from the button"-->
