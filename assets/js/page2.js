@@ -1,4 +1,4 @@
-mapboxgl.accessToken = "pk.eyJ1IjoidHJhaWxmaW5kZXIyMDIxIiwiYSI6ImNrcndyMTRsMjBqYWgydnIwb3lvOWRobGcifQ.lgOoEmg6MS5cXr21WZOSxw";
+mapboxgl.accessToken = "pk.eyJ1IjoiYWRhbS1uaWdnZWJydWdnZSIsImEiOiJja3JzMXN1M2EwaHJoMzF1aHRsNnh3ejNiIn0.qgb2dKPkqB5Lx5iukcDSdA";
 
 var butnSearchEl = document.querySelector(".mainbutton");
 var WeatherParametersEl = document.querySelector("#WeatherParameters");
@@ -10,7 +10,6 @@ var redirectUrl = '404.html';
 var mapUrl = 'page2.html';
 var citiesArray = []; //object array for pulling out of local storage elements
 var map; //object that has to be inialized by function setUpMap
-
 //Navbar mobile functionality
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.sidenav');
@@ -29,19 +28,22 @@ function initilizeProgram() {
     params = url.split('?')[1].split('&'),
     data = {}, tmp;
     for (var i = 0, l = params.length; i < l; i++) {
-     tmp = params[i].split('=');
+     tmp = params[i].split('=');      
      data[tmp[0]] = tmp[1];
     }
-    if(data.locationName !== ''){
-        storeSearchLocation(data.locationName);
-    }   
+    //Check if there were spaces sent in the URL
+    if(data.locationName.includes('%20')){
+        var splitStr = data.locationName.split('%20');
+        data.locationName = splitStr.join(' ');
+    }       
+    storeSearchLocation(data.locationName);
+       
 }
 
 function viewCities() {
     var citiesLocal = JSON.parse(localStorage.getItem("citiesLocal"));
     if (citiesLocal !== null) {
         citiesArray = citiesLocal;
-        console.log("citiesArray", citiesArray)
         displayCities();
     }
 }
@@ -89,8 +91,6 @@ function searchedLocationMobile(event, cityIdMobile){
         storeSearchLocation(cityEl);
     }
 }
-
-
 
 
  /**
@@ -164,13 +164,25 @@ function clearCities() {
  function setUpMap(center){
      map = new mapboxgl.Map({
          container: 'map',
-         style: 'mapbox://styles/mapbox/streets-v11',
+         style: 'mapbox://styles/adam-niggebrugge/cks2lfvnt3ymv17pkmhxwlh83',
          center: center,
-         zoom:8
+         zoom:13
     });
- }
- 
 
+    map.on('load', () => {
+        map.addSource('dem', {
+            'type': 'raster-dem',
+            'url': 'mapbox://mapbox-terrain-dem-v1'
+        });
+        map.addLayer(
+            {
+                'id': 'hillshading',
+                'source': 'dem',
+                'type': 'hillshade'
+            },
+        );
+    });
+}
  /**
   * This initializes the modal window to open when triggered
   *
@@ -208,26 +220,12 @@ function clearCities() {
     return splitStr.join(' '); 
   }
 
+
  initilizeProgram();
  //viewCities();
 
-// creating a function for Form messages
-function displayMessage(type, message) {
-    formMsg.textContent = message;
-    formMsg.setAttribute("class", type);
-}
 
-
-function setUpMap(center) {
-    map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: center,
-        zoom: 8
-    });
-}
-
-function listTrailfinder(lon, lat) {
+ function listTrailfinder(lon, lat) {
     //Clear earlier results
     listContainerEl.innerHTML = "";
     imageContainerEl.innerHTML = "";
@@ -302,15 +300,3 @@ function listTrailImages(searchTrailResult){
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
