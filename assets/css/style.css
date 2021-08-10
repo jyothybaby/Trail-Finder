@@ -357,3 +357,10 @@ footer {
     flex-direction: column;
   }
 }
+
+@media screen and (max-width: 768px) {
+  #imageContainer {
+    flex-direction: column;
+  }
+}
+
