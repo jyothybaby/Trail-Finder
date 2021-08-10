@@ -125,6 +125,20 @@ nav {
   box-shadow: 2px;
 }
 
+.modal-content{
+  background-color: var(--green);
+  color: var(--white);
+}
+
+.modal-footer a{
+  background-color: var(--green);
+  color: var(--white);
+}
+
+.modal-footer{
+  background-color: var(--white)
+}
+
 #topbarsearch .input-field .prefix {
   width: 0rem !important;
 }
