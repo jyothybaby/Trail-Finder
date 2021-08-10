@@ -18,7 +18,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       
         <link rel="stylesheet" href="./assets/css/style.css" />
-        <title>Trails!</title>
+        <title>Trail Finder | Search</title>
       </head>
       
       
@@ -34,15 +34,15 @@
                 <div class="center row">
                   <div class="col s12 ">
                     <div class="row" id="topbarsearch">
-                      <div class="input-field col s6 s12 red-text">
-                        <i class="red-text material-icons prefix">search</i>
-                        <input id="navCity" type="text" placeholder="Find Trails, cities etc..">
+                      <div class="input-field col s6 s12">
+                        <i class="material-icons prefix">search</i>
+                        <input id="navCity" type="text" placeholder="State, City, etc..">
                       </div>
                     </div>
                   </div>
                 </div>
               </li>
-              <li><a class="waves-effect waves-light btn"  onclick="searchedLocation(event, 'navCity')">Search</a></li>
+              <li><a class="btn nav-search"  onclick="searchedLocation(event, 'navCity')">Search</a></li>
               <li><a class="waves-effect waves-light btn modal-trigger" href="#modalAboutUs">About Us</a></li>
             </ul>
           </div>
@@ -50,20 +50,20 @@
       </div>
     
       <ul class="sidenav" id="mobile-demo">
-        <li><a class="waves-effect waves-light btn modal-trigger" href="#modalAboutUs">About Us</a></li>
+        <li><a class="btn modal-trigger" id="mobile-modal-trigger" href="#modalAboutUs">About Us</a></li>
         <li>
           <div class="center row">
             <div class="col s12 ">
               <div class="row" id="topbarsearch">
-                <div class="input-field col s6 s12 red-text">
-                  <i class="red-text material-icons prefix">search</i>
-                  <input id="navCity" type="text" placeholder="Find Trails, cities etc..">
+                <div class="input-field col s6 s12 white-text">
+                  <i class="material-icons prefix">search</i>
+                  <input id="navCityMobile" type="text" placeholder="State, city, etc..">
                 </div>
               </div>
             </div>
           </div>
         </li>
-        <li><a class="waves-effect waves-light btn"  onclick="searchedLocation(event, 'navCity')">Search</a></li>
+        <li><a class="nav-search btn"  id="mobile-nav-search" onclick="searchedLocationMobile(event, 'navCityMobile')">Search</a></li>
       </ul>
     
     <section id="milesButtonAndSearchCity">
@@ -82,7 +82,7 @@
               <!-- local storage will come here -->
             </div>
             <div>
-              <button type="button" class="clear-city valign-wrapper" onclick="clearCities()"> <i class="material-icons"> history </i>  Clear list </button><br>
+              <button type="button" class=" btn clear-city" onclick="clearCities()"> <i class="material-icons"> history </i>  Clear list </button><br>
             </div>
           </div>
         </section>
