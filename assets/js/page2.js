@@ -48,15 +48,25 @@ function viewCities() {
     }
 }
 
-
 function displayCities() {
     cityButtonList.innerHTML = "";
      for (var i = 0; i < citiesArray.length; i++) {
          var city = citiesArray[i];
-         var cityButton = document.createElement("li");
+         var cityButton = document.createElement("button");
+         var citylistItem = document.createElement("li");
+         citylistItem.appendChild(cityButton);
          cityButton.textContent = city;
-         cityButtonList.appendChild(cityButton);
+         cityButton.setAttribute("value", city);
+         cityButton.setAttribute('id', "cityBtn");
+         cityButton.setAttribute("class", "btn")
+         cityButton.addEventListener("click", handleEvent);
+         cityButtonList.appendChild(citylistItem);
      }
+ }
+
+ function handleEvent(event){
+    var buttonCityval = event.target.value;
+    getWeatherInfo(buttonCityval);
  }
  
 //Dedicating function to handle searches from page2
